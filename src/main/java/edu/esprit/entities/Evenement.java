@@ -1,14 +1,13 @@
 package edu.esprit.entities;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 public class Evenement {
 
     private int eventId;
     private String eventName;
-    private Date eventDate;
+    private String eventDate;
     private String description;
     //private List<Promotion> promotions;
 
@@ -17,14 +16,14 @@ public class Evenement {
 
     }
 
-    public Evenement(int eventId, String eventName, Date eventDate, String description) {
+    public Evenement(int eventId, String eventName, String eventDate, String description) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.description = description;
     }
 
-    public Evenement(int eventId, String eventName, Date eventDate) {
+    public Evenement(int eventId, String eventName, String eventDate) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventDate = eventDate;
@@ -37,6 +36,12 @@ public class Evenement {
 
     public Evenement(int eventId) {
         this.eventId = eventId;
+    }
+
+    public Evenement(String eventName, String eventDate, String description) {
+        this.eventName = eventName ;
+        this.eventDate = eventDate ;
+        this.description=description;
     }
 
     public int getEventId() {
@@ -55,11 +60,11 @@ public class Evenement {
         this.eventName = eventName;
     }
 
-    public Date getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
 
@@ -92,6 +97,15 @@ public class Evenement {
     public void setPromotions(List<Promotion> promotions) {
         this.promotions = promotions;
     }*/
+
+    @Override
+    public String toString() {
+        return "Evenement{" +
+                ", eventName='" + eventName + '\'' +
+                ", eventDate=" + eventDate +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
 
 

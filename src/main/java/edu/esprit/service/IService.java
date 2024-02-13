@@ -9,4 +9,3 @@ public interface IService <T>{
         public T getOneById(int id);
         public Set<T> getAll();
     }
-}
