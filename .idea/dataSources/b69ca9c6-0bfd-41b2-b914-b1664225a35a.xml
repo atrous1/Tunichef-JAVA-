@@ -1157,7 +1157,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
     </schema>
     <schema id="329" parent="1" name="tunichef">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-02-13.20:22:22</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-02-14.09:44:22</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <user id="330" parent="1" name="root">
@@ -1389,7 +1389,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Position>1</Position>
     </column>
     <column id="380" parent="339" name="eventId">
-      <DasType>varchar(255)|0s</DasType>
+      <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
@@ -1408,119 +1408,128 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <index id="384" parent="339" name="PRIMARY">
+    <foreign-key id="384" parent="339" name="eventId_fk">
+      <ColNames>eventId</ColNames>
+      <RefColNames>eventId</RefColNames>
+      <RefTableName>evenement</RefTableName>
+    </foreign-key>
+    <index id="385" parent="339" name="PRIMARY">
       <ColNames>promotionId</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="385" parent="339" name="PRIMARY">
+    <index id="386" parent="339" name="eventId_fk">
+      <ColNames>eventId</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="387" parent="339" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="386" parent="340" name="idRec">
+    <column id="388" parent="340" name="idRec">
       <AutoIncrement>5</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="387" parent="340" name="id_user">
+    <column id="389" parent="340" name="id_user">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="388" parent="340" name="Description">
+    <column id="390" parent="340" name="Description">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="389" parent="340" name="Avis">
+    <column id="391" parent="340" name="Avis">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="390" parent="340" name="PRIMARY">
+    <index id="392" parent="340" name="PRIMARY">
       <ColNames>idRec</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="391" parent="340" name="PRIMARY">
+    <key id="393" parent="340" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="392" parent="341" name="idRep">
+    <column id="394" parent="341" name="idRep">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="393" parent="341" name="Contenu">
+    <column id="395" parent="341" name="Contenu">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="394" parent="341" name="idRec">
+    <column id="396" parent="341" name="idRec">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <foreign-key id="395" parent="341" name="fk_reponse_reclamation_idrec">
+    <foreign-key id="397" parent="341" name="fk_reponse_reclamation_idrec">
       <ColNames>idRec</ColNames>
       <RefColNames>idRec</RefColNames>
       <RefTableName>reclamation</RefTableName>
     </foreign-key>
-    <index id="396" parent="341" name="PRIMARY">
+    <index id="398" parent="341" name="PRIMARY">
       <ColNames>idRep</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="397" parent="341" name="fk_reponse_reclamation_idrec">
+    <index id="399" parent="341" name="fk_reponse_reclamation_idrec">
       <ColNames>idRec</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="398" parent="341" name="PRIMARY">
+    <key id="400" parent="341" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="399" parent="342" name="id_reservation">
+    <column id="401" parent="342" name="id_reservation">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="400" parent="342" name="nom_reservation">
+    <column id="402" parent="342" name="nom_reservation">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="401" parent="342" name="num_table">
+    <column id="403" parent="342" name="num_table">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="402" parent="342" name="num_tel">
+    <column id="404" parent="342" name="num_tel">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="403" parent="342" name="calendrier">
+    <column id="405" parent="342" name="calendrier">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="404" parent="342" name="id_user">
+    <column id="406" parent="342" name="id_user">
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <index id="405" parent="342" name="PRIMARY">
+    <index id="407" parent="342" name="PRIMARY">
       <ColNames>id_reservation</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="406" parent="342" name="PRIMARY">
+    <key id="408" parent="342" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

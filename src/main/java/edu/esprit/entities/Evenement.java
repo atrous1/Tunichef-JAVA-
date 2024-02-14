@@ -38,6 +38,7 @@ public class Evenement {
         this.eventId = eventId;
     }
 
+
     public Evenement(String eventName, String eventDate, String description) {
         this.eventName = eventName ;
         this.eventDate = eventDate ;
