@@ -6,6 +6,10 @@ import Services.UserService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -16,12 +20,14 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.security.PublicKey;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -74,7 +80,23 @@ public class   UserControler{
         alert.show();
     }
     @FXML
+    void Login(ActionEvent event) {
+        try {
+
+            Parent page1 = FXMLLoader.load(getClass().getResource("/Login.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex);
+
+        }
+
+    }
+    @FXML
     void initialize() {
+
 
         image_user.setOnDragOver(new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
@@ -95,10 +117,17 @@ public class   UserControler{
                     success = true;
                     path = null;
                     for (File file : db.getFiles()) {
-                        path = file.getName();
+                        url_image = file.getName();
                         selectedFile = new File(file.getAbsolutePath());
-                        System.out.println("Drag and drop file done and path=" + file.getAbsolutePath());//file.getAbsolutePath()="C:\Users\X\Desktop\ScreenShot.6.png"
+                        System.out.println("Drag and drop file done and path=" + file.getAbsolutePath());//file.getAbsolutePath(:\"C:\Users\X\Desktop\ScreenShot.6.png"
                         image_user.setImage(new Image("file:" + file.getAbsolutePath()));
+                        File destinationFile = new File("C:\\xampp\\htdocs\\user_images\\" + file.getName());
+                        try {
+                            // Copy the selected file to the destination file
+                            Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                        } catch (IOException e) {
+                            System.err.println(e);
+                        }
                     }
                 }
                 event.setDropCompleted(success);
@@ -109,15 +138,14 @@ public class   UserControler{
         image_user.setImage(new Image("file:C:\\Users\\user\\Desktop\\drag-drop.gif"));
 
     }
-
     @FXML
-    void image_add(MouseEvent event) {
+     void image_add (MouseEvent event) {
 
         FileChooser fc = new FileChooser();
         fc.setInitialDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
         fc.setTitle("Veuillez choisir l'image");
         fc.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image", "*.jpg", "*.png"),
+                new FileChooser.ExtensionFilter("Image", ".jpg", ".png"),
                 new FileChooser.ExtensionFilter("PNG", "*.png"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg")
         );
@@ -147,5 +175,6 @@ public class   UserControler{
         }
 
     }
+
 
 }

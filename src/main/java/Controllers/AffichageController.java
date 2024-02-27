@@ -93,11 +93,9 @@ public class AffichageController {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/item_user.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-
                 item_user item = fxmlLoader.getController();
                 System.out.println("user details name " + UserDataList.get(i).getNom() + " url : C:/xampp/htdocs/user_images/" + UserDataList.get(i).getImage());
                 item.setData(UserDataList.get(i).getId(),UserDataList.get(i).getNom(), UserDataList.get(i).getPrenom(), UserDataList.get(i).getRole(), UserDataList.get(i).getNumtel(), UserDataList.get(i).getEmail(), UserDataList.get(i).getPassword(), UserDataList.get(i).getImage(), myListener);
-                //item.setData(covDataList.get(i).getDepart(), covDataList.get(i).getDestination(), covDataList.get(i).getDate_dep());
 
                 if (column == 2) {
                     column = 0;

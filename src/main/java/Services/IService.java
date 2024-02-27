@@ -13,4 +13,5 @@ public interface IService {
     public boolean test_Tel(String numtel);
     public boolean test_Email(String mail);
     public List<User> rechercheUser(int id);
+    public boolean verfier_mail(String mail);
 }

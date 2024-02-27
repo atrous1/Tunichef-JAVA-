@@ -1,5 +1,6 @@
 package Entities;
 
 public enum Role {
-    ADMIN,CLIENT
+    ADMIN,
+    CLIENT
 }

@@ -1,13 +1,18 @@
 package Controllers;
 
+import Entities.Role;
 import Entities.User;
 import Services.UserService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -46,19 +51,23 @@ public class DetailUser {
     private TextField prenom_detail;
 
     @FXML
-    private TextField role_detail;
+    private ComboBox<String> role_detail;
+
 
     @FXML
     void Modifier(ActionEvent event) {
         try {
             int id = item_user.u.getId();
-            String nom = nom_detail.getText();
-            String prenom = prenom_detail.getText();
-            int numtel = Integer.parseInt(numtel_detail.getText());
-            String email = email_detail.getText();
-            String password = password_detail.getText();
 
-            User user = new User(nom,prenom,numtel,email,password,item_user.u.getRole(),item_user.u.getImage());
+            User user = new User();
+            user.setNom(nom_detail.getText());
+            user.setPrenom(prenom_detail.getText());
+            user.setNumtel(Integer.parseInt(numtel_detail.getText()));
+            user.setEmail(email_detail.getText());
+            user.setPassword(password_detail.getText());
+            String role = role_detail.getValue();
+            user.setRole(Role.valueOf(role));
+            user.setImage(item_user.u.getImage());
 
             UserService userService = new UserService();
 
@@ -99,7 +108,8 @@ public class DetailUser {
         //id_co_TF.setText(String.valueOf(Afficher_CovController.id_co));
         nom_detail.setText(String.valueOf(item_user.u.getNom()));
         prenom_detail.setText(String.valueOf(item_user.u.getPrenom()));
-        role_detail.setText(item_user.u.getRole().toString());
+        ObservableList<String> list = FXCollections.observableArrayList("CLIENT", "ADMIN");
+        role_detail.setItems(list);
         email_detail.setText(String.valueOf(item_user.u.getEmail()));
         password_detail.setText(String.valueOf(item_user.u.getPassword()));
         numtel_detail.setText(String.valueOf(item_user.u.getNumtel()));
@@ -108,5 +118,8 @@ public class DetailUser {
         } catch (FileNotFoundException e) {
             System.err.println("Error loading image: " + e.getMessage());
         }
+    }
+
+    public void modifyrole(ActionEvent event) {
     }
 }

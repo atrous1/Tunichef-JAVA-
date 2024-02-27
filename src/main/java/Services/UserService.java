@@ -6,6 +6,8 @@ import Utils.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserService implements IService{
 
@@ -29,7 +31,7 @@ public class UserService implements IService{
     @Override
     public void modifierUser(User user, int id) {
         try {
-            String query = "UPDATE `user` SET `nom` = '" + user.getNom() + "', `prenom` = '" + user.getPrenom() + "', `numtel` = '" + user.getNumtel()  + "', `email` = '" + user.getEmail()  + "', `password` = '" + user.getPassword()  + "', `image` = '" + user.getImage()  +   "' WHERE `user`.`id` = " + id;
+            String query = "UPDATE `user` SET `nom` = '" + user.getNom() + "', `prenom` = '" + user.getPrenom() + "', `numtel` = '" + user.getNumtel()  + "', `email` = '" + user.getEmail()  + "', `password` = '" + user.getPassword()  + "', `image` = '" + user.getImage() + "', `role` = '" + user.getRole()+  "' WHERE `user`.`id` = " + id;
             Statement st = conn.createStatement();
             st.executeUpdate(query);
             System.out.println("user updated !");
@@ -181,6 +183,67 @@ public class UserService implements IService{
         }
 
         return list;
+    }
+
+    @Override
+    public boolean verfier_mail(String mail) {
+        Statement stm = null;
+        ResultSet rst = null;
+
+        try {
+            stm = conn.createStatement();
+            String query = "SELECT * FROM user WHERE email='" + mail + "'";
+            rst = stm.executeQuery(query);
+            if (rst.next()) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+
+        return false;
+    }
+
+    public User rechercheUserByEmail(String email) throws SQLException {
+        User user = null;
+        String req = "SELECT * FROM `user` WHERE email= ?";
+
+        try (PreparedStatement ps = conn.prepareStatement(req)) {
+            ps.setString(1, email);
+            ResultSet RS = ps.executeQuery();
+
+            if (RS.next()) {
+                user = new User();
+                user.setId(RS.getInt("id"));
+                user.setNom(RS.getString("nom"));
+                user.setPrenom(RS.getString("prenom"));
+                user.setNumtel(RS.getInt("numtel"));
+                user.setEmail(RS.getString("email"));
+                user.setPassword(RS.getString("password"));
+                user.setImage(RS.getString("image"));
+                System.out.println(user);
+            }
+        }
+
+        return user;
+    }
+
+    public void modifier_password(int id, String password) {
+
+        Statement stm;
+        try {
+            stm = conn.createStatement();
+
+            String query = "UPDATE user SET password='" + password + "' WHERE id= " + id;
+            stm.executeUpdate(query);
+            System.out.println("password updated");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }

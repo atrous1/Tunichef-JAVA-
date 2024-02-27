@@ -52,6 +52,7 @@ public class item_user implements Initializable {
         nom_item.setText(nom);
         prenom_item.setText(prenom);
         role_item.setText(role.toString());
+
         String fullurl = "C:\\xampp\\htdocs\\user_images\\" + url;
         System.out.println("full url " + fullurl);
 
