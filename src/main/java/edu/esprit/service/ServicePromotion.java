@@ -3,13 +3,13 @@ package edu.esprit.service;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Promotion;
 
-import edu.esprit.entities.Promotion;
 import java.sql.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import edu.esprit.util.DataSource;
-public class ServicePromotion implements IService<Promotion> {
+public abstract class ServicePromotion implements IService<Promotion> {
 
     Connection cnx = DataSource.getInstance().getCnx();
 
@@ -22,6 +22,7 @@ public class ServicePromotion implements IService<Promotion> {
             ps.setDouble(2,P.getDiscount());
             ps.setString(3,P.getExpirationDate());
 
+
             ps.executeUpdate();
             System.out.println("Promotion added !");
         } catch (SQLException ex) {
@@ -30,7 +31,7 @@ public class ServicePromotion implements IService<Promotion> {
     }
 
     @Override
-    public void modifier(Promotion P) {
+    public void modifier(Promotion P, int id) {
 
 
         try {
@@ -97,5 +98,6 @@ public class ServicePromotion implements IService<Promotion> {
 
         return promos;
     }
+
 
 }

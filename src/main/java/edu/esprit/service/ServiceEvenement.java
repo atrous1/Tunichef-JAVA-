@@ -1,10 +1,15 @@
 package edu.esprit.service;
 import edu.esprit.entities.Evenement;
+import edu.esprit.entities.Promotion;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import edu.esprit.entities.Promotion;
 import edu.esprit.util.DataSource;
 
     public class ServiceEvenement implements IService<Evenement> {
@@ -12,12 +17,14 @@ import edu.esprit.util.DataSource;
         Connection cnx = DataSource.getInstance().getCnx();
 
         @Override
-        public void ajouter(Evenement e) {
+        public void ajouter(Evenement e) throws SQLException{
             String req = "INSERT INTO `evenement`(`eventName`, `eventDate`, `description`) VALUES (?,?,?)";
             try {
                 PreparedStatement ps = cnx.prepareStatement(req);
                 ps.setString(1,e.getEventName());
-                ps.setString(2, e.getEventDate());
+                Date d = e.getEventDate();
+                java.sql.Date sqlDate = new java.sql.Date(d.getTime());
+                ps.setDate(2, sqlDate);
                 ps.setString(3, e.getDescription());
 
                 ps.executeUpdate();
@@ -28,7 +35,7 @@ import edu.esprit.util.DataSource;
         }
 
         @Override
-        public void modifier(Evenement e) {
+        public void modifier(Evenement e, int id) {
 
             /*String req = "UPDATE evenement SET eventName = ?, eventDate = ?, description = ? WHERE eventid = ?";
             PreparedStatement pst = connection.prepareStatement(req);
@@ -40,7 +47,7 @@ import edu.esprit.util.DataSource;
 
 
             try {
-                String req = "UPDATE evenement SET eventName = '" + e.getEventName() + "', eventDate = '" + e.getEventDate() + "', description = '" + e.getDescription() +  "' WHERE eventid = " + e.getEventId();
+                String req = "UPDATE evenement SET eventName = '" + e.getEventName() + "', eventDate = '" + e.getEventDate() + "', description = '" + e.getDescription() +  "' WHERE eventid = " + id;
                 Statement st = cnx.createStatement();
                 st.executeUpdate(req);
                 System.out.println("evenement updated !");
@@ -65,19 +72,23 @@ import edu.esprit.util.DataSource;
 
         @Override
         public Evenement getOneById(int id) {
-                Evenement event = null;
-                try {
-                    String req = "SELECT * FROM evenement WHERE eventId = " + id;
-                    Statement st = cnx.createStatement();
-                    ResultSet rs = st.executeQuery(req);
-                    if (rs.next()) {
-                        event = new Evenement(rs.getInt("eventId"), rs.getString("eventName"), rs.getString("eventDate"), rs.getString("description"));
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
+            Evenement r = new Evenement();
+            try {
+                String req = "SELECT * FROM evenement WHERE eventId= " + id;
+                Statement st = cnx.createStatement();
+                ResultSet RS = st.executeQuery(req);
+                while (RS.next()) {
+                    r.setEventId(RS.getInt("eventId"));
+                    r.setEventName(RS.getString("eventName"));
+                    r.setEventDate(RS.getDate("eventDate"));
+                    r.setDescription(RS.getString("description"));
 
-                return event;
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+
+            return r;
             }
 
         @Override
@@ -91,9 +102,9 @@ import edu.esprit.util.DataSource;
                 while (res.next()){
                     int id = res.getInt(1);
                     String eventName = res.getString("eventName");
-                    String eventDate = res.getString("eventDate");
+                    Date eventDate = res.getDate("eventDate");
                     String description = res.getString("description");
-                    Evenement event = new Evenement(eventName, String.valueOf(Date.valueOf(eventDate)),description);
+                    Evenement event = new Evenement(id, eventName, eventDate, description, null);
                     evenements.add(event);
                 }
             } catch (SQLException e) {
@@ -103,6 +114,35 @@ import edu.esprit.util.DataSource;
 
             return evenements;
         }
+
+        @Override
+        public void afficter(Evenement e, List<Promotion> promotions) {
+
+        }
+
+        public List<Evenement> rechEvent(int id) {
+            List<Evenement> list = new ArrayList<>();
+            try {
+                String req = "SELECT * FROM evenement WHERE `eventId` = " + id;
+                Statement st = cnx.createStatement();
+                ResultSet RS = st.executeQuery(req);
+                while (RS.next()) {
+                    Evenement r = new Evenement();
+                    r.setEventId(RS.getInt("eventId"));
+                    r.setEventName(RS.getString("eventName"));
+                    r.setEventDate(RS.getDate("eventDate"));
+                    r.setDescription(RS.getString("description"));
+
+                    list.add(r);
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+
+            return list;
+        }
+
+
     }
 
 

@@ -5,11 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9dd1c85-a80d-4d70-9a29-3ef78ac5682b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AfficheEvenement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AjouterEvenement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/DetailsEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/Home.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/ItemEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/SupprimerEvenement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/MainFx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/AfficheEvenement.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/AjouterEvenement.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DetailsEvent.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Home.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/SupprimerEvenement.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/itemEvent.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b69ca9c6-0bfd-41b2-b914-b1664225a35a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b69ca9c6-0bfd-41b2-b914-b1664225a35a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Evenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Evenement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Promotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServiceEvenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServiceEvenement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServicePromotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServicePromotion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/Main.java" afterDir="false" />
     </list>
@@ -22,12 +37,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="CSS File" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -40,12 +60,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
+    "Maven.gestionEvenement [javafx:jlink].executor": "Run",
+    "Maven.gestionEvenement [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
+    "Maven.gestionEvenement [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/mahran/IdeaProjects/gestionEvenement",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -53,8 +78,8 @@
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -63,6 +88,77 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mahran\IdeaProjects\gestionEvenement\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.esprit.tests.Main" />
+      <module name="gestionEvenement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.esprit.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gestionEvenement [javafx:jlink]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings">
+          <MavenRunnerSettings>
+            <option name="delegateBuildToMaven" value="false" />
+            <option name="environmentProperties">
+              <map />
+            </option>
+            <option name="jreName" value="#USE_PROJECT_JDK" />
+            <option name="mavenProperties">
+              <map />
+            </option>
+            <option name="passParentEnv" value="true" />
+            <option name="runMavenInBackground" value="true" />
+            <option name="skipTests" value="false" />
+            <option name="vmOptions" value="--module-path &quot;C:\java\lib&quot; --add-modules javafx.controls,javafx.fxml " />
+          </MavenRunnerSettings>
+        </option>
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="tests.MainFx" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Maven.gestionEvenement [javafx:jlink]" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -80,11 +176,18 @@
       <option name="presentableId" value="Default" />
       <updated>1707767630539</updated>
       <workItem from="1707767631607" duration="23298000" />
-      <workItem from="1707862441070" duration="9754000" />
+      <workItem from="1707862441070" duration="16225000" />
+      <workItem from="1708348387578" duration="19779000" />
+      <workItem from="1708516722015" duration="12443000" />
+      <workItem from="1708942231897" duration="18413000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

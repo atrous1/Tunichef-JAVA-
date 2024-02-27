@@ -1,48 +1,33 @@
 package edu.esprit.entities;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Evenement {
 
     private int eventId;
     private String eventName;
-    private String eventDate;
+    private Date eventDate;
     private String description;
-    //private List<Promotion> promotions;
-
+    private List<Promotion> promotions;
 
     public Evenement() {
-
     }
 
-    public Evenement(int eventId, String eventName, String eventDate, String description) {
+    public Evenement(int eventId, String eventName, Date eventDate, String description, List<Promotion> promotions) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.description = description;
+        this.promotions = promotions;
     }
 
-    public Evenement(int eventId, String eventName, String eventDate) {
-        this.eventId = eventId;
+    public Evenement(String eventName, Date eventDate, String description, List<Promotion> promotions) {
         this.eventName = eventName;
         this.eventDate = eventDate;
-    }
-
-    public Evenement(int eventId, String eventName) {
-        this.eventId = eventId;
-        this.eventName = eventName;
-    }
-
-    public Evenement(int eventId) {
-        this.eventId = eventId;
-    }
-
-
-    public Evenement(String eventName, String eventDate, String description) {
-        this.eventName = eventName ;
-        this.eventDate = eventDate ;
-        this.description=description;
+        this.description = description;
+        this.promotions = promotions;
     }
 
     public int getEventId() {
@@ -61,11 +46,11 @@ public class Evenement {
         this.eventName = eventName;
     }
 
-    public String getEventDate() {
+    public Date getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(String eventDate) {
+    public void setEventDate(Date eventDate) {
         this.eventDate = eventDate;
     }
 
@@ -75,6 +60,14 @@ public class Evenement {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Promotion> getPromotions() {
+        return promotions;
+    }
+
+    public void setPromotions(List<Promotion> promotions) {
+        this.promotions = promotions;
     }
 
     @Override
@@ -99,14 +92,6 @@ public class Evenement {
         this.promotions = promotions;
     }*/
 
-    @Override
-    public String toString() {
-        return "Evenement{" +
-                ", eventName='" + eventName + '\'' +
-                ", eventDate=" + eventDate +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }
 
 

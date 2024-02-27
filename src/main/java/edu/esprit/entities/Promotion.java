@@ -2,14 +2,24 @@ package edu.esprit.entities;
 
 import java.util.Objects;
 
-public class Promotion extends Evenement {
+public class Promotion {
 
     private int promotionId;
     private int eventId;
     private String promotionName;
     private double discount;
     private String expirationDate;
+    private Evenement evenement;
 
+
+    public Promotion(int promotionId, int eventId, String promotionName, double discount, String expirationDate, Evenement evenement) {
+        this.promotionId = promotionId;
+        this.eventId = eventId;
+        this.promotionName = promotionName;
+        this.discount = discount;
+        this.expirationDate = expirationDate;
+        this.evenement = evenement;
+    }
 
     public Promotion(int promotionId, String promotionName, double discount, String expirationDate) {
     }
@@ -44,6 +54,14 @@ public class Promotion extends Evenement {
         this.promotionName = promotionName;
         this.discount = discount;
         this.expirationDate = expirationDate;
+    }
+
+    public Evenement getEvenement() {
+        return evenement;
+    }
+
+    public void setEvenement(Evenement evenement) {
+        this.evenement = evenement;
     }
 
     public Promotion(int promotionId) {
