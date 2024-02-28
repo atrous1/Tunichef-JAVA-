@@ -15,7 +15,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.printf("Hello and welcome!");
+        /*System.out.printf("Hello and welcome!");
         ServiceProduit sp = new ServiceProduit();
         ServiceMenu serviceMenu = new ServiceMenu();
         new Menu(5, "aliiiii", "tunis");
@@ -25,7 +25,7 @@ public class Main {
         serviceMenu.affichermenu();
 
         sp.ajouterProduit(p);
-        System.out.println("**********************************************");
+        System.out.println("**********************************************");*/
 
     }
 }

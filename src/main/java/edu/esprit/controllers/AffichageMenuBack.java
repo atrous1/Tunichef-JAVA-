@@ -107,7 +107,6 @@ public class AffichageMenuBack implements Initializable{
             modnbrpage.setText(String.valueOf(Menu.getNbr_page()));
             modcat.setText(Menu.getCategorie());
             modori.setText(Menu.getOrigine());
-            modidp.setText(String.valueOf(Menu.getId_produit()));
         }
 
 
@@ -129,7 +128,7 @@ public class AffichageMenuBack implements Initializable{
             }
            // ArrayList<Produit> idproValuesList = new ArrayList<>();
 
-            Menu newmenu = new Menu(idmenu, nbrpademenuValue, categoriemenuValue, originemenuValue, idproValue);
+            Menu newmenu = new Menu(nbrpademenuValue, categoriemenuValue, originemenuValue);
 
 
             ServiceMenu menuServiceService = new ServiceMenu(); // Créez
@@ -187,10 +186,8 @@ public class AffichageMenuBack implements Initializable{
                     Menu PlatSelectionne = tabelMenu.getSelectionModel().getSelectedItem();
                     if (PlatSelectionne != null) {
                         // Mettez à jour le formulaire avec les valeurs de la ligne sélectionnée
-                        casenbrpage.setText(String.valueOf(PlatSelectionne.getId_produit()));
                         casecat.setText(PlatSelectionne.getCategorie());
                         caseori.setText(PlatSelectionne.getOrigine());
-                        caseidp.setText(String.valueOf(PlatSelectionne.getId_produit()));
                     }
                 }
             });

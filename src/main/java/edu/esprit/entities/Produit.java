@@ -22,6 +22,14 @@ public class Produit {
         this.prix_produit = prix_produit;
     }
 
+    public Produit(String nom_produit, String description_produit, String image_produit, double prix_produit, Menu menu) {
+        this.nom_produit = nom_produit;
+        this.description_produit = description_produit;
+        this.image_produit = image_produit;
+        this.prix_produit = prix_produit;
+        Menu = menu;
+    }
+
     public Produit(String nom_produit, String description_produit, String image_produit) {
         this.nom_produit = nom_produit;
         this.description_produit = description_produit;

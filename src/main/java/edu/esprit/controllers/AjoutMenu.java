@@ -47,14 +47,11 @@ public class AjoutMenu {
     private Connection cnx;
 
     @FXML
-    void ajouteM(ActionEvent event) {
+    void ajouteM(ActionEvent event) throws SQLException {
         ServiceMenu sp = new ServiceMenu();
         List<Produit> produits = fetchProduits();
 
-        Menu menu1 = new Menu(Integer.parseInt(nbrpage.getText()),
-                categoriep.getText(),
-                originep.getText(),
-                produits);
+        Menu menu1 = new Menu(Integer.parseInt(nbrpage.getText()), categoriep.getText(), originep.getText());
 
         sp.ajouterMenu(menu1);
 

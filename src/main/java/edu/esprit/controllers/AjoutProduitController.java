@@ -3,6 +3,13 @@ package edu.esprit.controllers;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import edu.esprit.entities.Menu;
+import edu.esprit.services.ServiceMenu;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 import edu.esprit.entities.Produit;
@@ -19,6 +26,8 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -52,9 +61,12 @@ public class AjoutProduitController {
     File selectedFile;
 
     @FXML
-    void ajouterp(ActionEvent event) {
+    void ajouterp(ActionEvent event) throws SQLException, IOException {
         ServiceProduit sp = new ServiceProduit();
-        Produit produit1 =  new Produit(nomproduit.getText(), descriptionProduit.getText() ,url_image, Integer.parseInt(prixproduit.getText()));
+        ServiceMenu sm = new ServiceMenu();
+        int id = MenuCardController.r.getId_menu();
+        Menu menu = sm.rechMenu(id).get(0);
+        Produit produit1 =  new Produit(nomproduit.getText(), descriptionProduit.getText() ,url_image, Integer.parseInt(prixproduit.getText()), menu);
             sp.ajouterProduit(produit1);
 
 
@@ -62,6 +74,12 @@ public class AjoutProduitController {
         alert.setTitle("produit Ajoutée");
         alert.setContentText("produit Ajoutée !");
         alert.show();
+
+        Parent page1 = FXMLLoader.load(getClass().getResource("/AffichageProduit.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
 
     }
 

@@ -5,6 +5,7 @@
 
 package edu.esprit.services;
 
+import edu.esprit.entities.Menu;
 import edu.esprit.entities.Produit;
 import edu.esprit.utils.DataSource;
 import java.sql.Connection;
@@ -21,24 +22,22 @@ public class ServiceProduit {
     public ServiceProduit() {
     }
 
-    public void ajouterProduit(Produit p) {
-        try {
-            String query = "INSERT INTO produit(nom_produit,description_produit,image_produit,prix_produit) VALUES (?,?,?,?)";
-            PreparedStatement preparedStatement = this.cnx.prepareStatement(query, 1);
-            preparedStatement.setString(1, p.getNom_produit());
-            preparedStatement.setString(2, p.getDescription_produit());
-            preparedStatement.setString(3, p.getImage_produit());
-            preparedStatement.setDouble(4, p.getPrix_produit());
-            ResultSet rs = preparedStatement.getGeneratedKeys();
-            if (rs.next()) {
-                p.setId_produit(rs.getInt(1));
-            }
+    public void ajouterProduit(Produit p) throws SQLException {
 
-            preparedStatement.executeUpdate();
-            System.out.print("succes!!!");
-        } catch (SQLException var5) {
-            System.err.println(var5.getMessage());
+        String query = "INSERT INTO produit(nom_produit,description_produit,image_produit,prix_produit, fk_menu) VALUES (?,?,?,?,?)";
+        PreparedStatement preparedStatement = this.cnx.prepareStatement(query, 1);
+        preparedStatement.setString(1, p.getNom_produit());
+        preparedStatement.setString(2, p.getDescription_produit());
+        preparedStatement.setString(3, p.getImage_produit());
+        preparedStatement.setDouble(4, p.getPrix_produit());
+        preparedStatement.setInt(5, p.getMenu().getId_menu());
+        ResultSet rs = preparedStatement.getGeneratedKeys();
+        if (rs.next()) {
+            p.setId_produit(rs.getInt(1));
         }
+
+        preparedStatement.executeUpdate();
+        System.out.print("succes!!!");
 
     }
 
@@ -91,5 +90,33 @@ public class ServiceProduit {
         }
 
         return listproduits;
+    }
+
+    public List<Produit> rechProduit(int id) {
+        List<Produit> list = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM `produit` WHERE fk_menu= " + id;
+            Statement st = cnx.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                Produit r = new Produit();
+                r.setId_produit(RS.getInt("id_produit"));
+                r.setNom_produit(RS.getString("nom_produit"));
+                r.setDescription_produit(RS.getString("description_produit"));
+                r.setImage_produit(RS.getString("image_produit"));
+                r.setPrix_produit(RS.getDouble("prix_produit"));
+                int id_menu = RS.getInt("fk_menu");
+                ServiceMenu sm = new ServiceMenu();
+
+                r.setMenu(sm.rechMenu(id_menu).get(0));
+
+                list.add(r);
+                System.out.println(r);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+
+        return list;
     }
 }

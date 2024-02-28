@@ -14,39 +14,19 @@ import java.util.List;
 
 public class ServiceMenu {
     private Connection cnx = DataSource.getInstance().getCnx();
+    Statement ste;
 
     public ServiceMenu() {
     }
 
-    public void ajouterMenu(Menu m) {
-        try {
-            String query = "INSERT INTO menu(nbr_page, categorie, origine, id_produit) VALUES (?,?,?,?)";
-            PreparedStatement preparedStatement = this.cnx.prepareStatement(query, 1);
-            preparedStatement.setInt(1, m.getNbr_page());
-            preparedStatement.setString(2, m.getCategorie());
-            preparedStatement.setString(3, m.getOrigine());
+    public void ajouterMenu(Menu m) throws SQLException {
 
-            // Extract id_produit from Produit object (modify if needed)
-            int idProduit = m.getId_produit();
-
-            // Ensure we have a valid id before setting
-            if (idProduit > 0) {
-                preparedStatement.setInt(4, idProduit);
-            } else {
-                // Handle invalid id case (throw exception, log warning, etc.)
-                System.err.println("Invalid id_produit: " + idProduit);
-                return; // Or throw an exception
-            }
-            ResultSet rs = preparedStatement.getGeneratedKeys();
-            if (rs.next()) {
-                m.setId_menu(rs.getInt(1));
-            }
-
-            preparedStatement.executeUpdate();
-            System.out.print("succes!!!");
-        } catch (SQLException var5) {
-            System.err.println(var5.getMessage());
-        }
+        String query = "INSERT INTO menu (nbr_page, categorie, origine) VALUES (?, ?, ?)";
+        PreparedStatement preparedStatement = cnx.prepareStatement(query);
+        preparedStatement.setInt(1, m.getNbr_page());
+        preparedStatement.setString(2, m.getCategorie());
+        preparedStatement.setString(3, m.getOrigine());
+        preparedStatement.executeUpdate();
     }
 
     public void modifiermenu(Menu menu, int id) {
@@ -89,7 +69,6 @@ public class ServiceMenu {
                 m.setNbr_page(CA.getInt("nbr_page"));
                 m.setCategorie(CA.getString("categorie"));
                 m.setOrigine(CA.getString("origine"));
-                m.setId_produit(CA.getInt("id_produit"));
                 listmenu.add(m);
                 System.out.println(m);
             }
@@ -98,5 +77,27 @@ public class ServiceMenu {
         }
 
         return listmenu;
+    }
+
+    public List<Menu> rechMenu(int id) {
+        List<Menu> list = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM `menu` WHERE id_menu= " + id;
+            Statement st = cnx.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                Menu r = new Menu();
+                r.setId_menu(RS.getInt("id_menu"));
+                r.setNbr_page(RS.getInt("nbr_page"));
+                r.setCategorie(RS.getString("categorie"));
+                r.setOrigine(RS.getString("origine"));
+
+                list.add(r);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+
+        return list;
     }
 }

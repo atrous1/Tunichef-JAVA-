@@ -12,7 +12,7 @@ import java.util.Objects;
 public class HelloApplication extends Application {
         @Override
         public void start(Stage primaryStage) throws Exception {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AjoutMenu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AffichageMenuBack.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 320, 240);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Tunichef");
