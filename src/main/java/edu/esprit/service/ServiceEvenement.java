@@ -115,11 +115,6 @@ import edu.esprit.util.DataSource;
             return evenements;
         }
 
-        @Override
-        public void afficter(Evenement e, List<Promotion> promotions) {
-
-        }
-
         public List<Evenement> rechEvent(int id) {
             List<Evenement> list = new ArrayList<>();
             try {

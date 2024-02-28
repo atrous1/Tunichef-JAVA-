@@ -16,7 +16,7 @@
             <Image url="@Assets/hm.png" />
          </image>
       </ImageView>
-      <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="152.0" prefHeight="334.0" prefWidth="478.0">
+      <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="152.0" prefHeight="203.0" prefWidth="478.0">
          <content>
             <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
               <rowConstraints>
@@ -26,8 +26,8 @@
          </content>
       </ScrollPane>
       <Button layoutX="32.0" layoutY="106.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
-      <Label fx:id="eventName" layoutX="572.0" layoutY="169.0" text="Event Name" textFill="WHITE" />
-      <ImageView fx:id="image" fitHeight="66.0" fitWidth="66.0" layoutX="571.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="579.0" layoutY="262.0" mnemonicParsing="false" onAction="#details" text="Details" />
+      <Label fx:id="eventName" layoutX="229.0" layoutY="373.0" text="Event Name" />
+      <ImageView fx:id="image" fitHeight="66.0" fitWidth="66.0" layoutX="220.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="228.0" layoutY="466.0" mnemonicParsing="false" onAction="#details" text="Details" />
    </children>
 </AnchorPane>

@@ -2,21 +2,33 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="565.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.DetailsEvent">
    <children>
-      <Label layoutX="84.0" layoutY="84.0" text="Event Name" />
-      <Label layoutX="84.0" layoutY="118.0" text="Event Date" />
-      <Label layoutX="84.0" layoutY="154.0" text="Description" />
-      <TextField fx:id="event_name" layoutX="180.0" layoutY="80.0" />
-      <TextField fx:id="event_date" layoutX="181.0" layoutY="123.0" />
-      <TextField fx:id="event_description" layoutX="181.0" layoutY="159.0" />
-      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="493.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="129.0" layoutY="327.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
-      <Button layoutX="279.0" layoutY="327.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <ImageView fitHeight="589.0" fitWidth="795.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/hm.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="31.0" layoutY="295.0" text="Event Name" />
+      <Label layoutX="34.0" layoutY="347.0" text="Event Date" />
+      <Label layoutX="33.0" layoutY="402.0" text="Description" />
+      <TextField fx:id="event_name" layoutX="119.0" layoutY="291.0" />
+      <TextField fx:id="event_date" layoutX="119.0" layoutY="343.0" />
+      <TextField fx:id="event_description" layoutX="119.0" layoutY="398.0" />
+      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="111.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="57.0" layoutY="478.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <Button layoutX="168.0" layoutY="478.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Label fx:id="errue" layoutX="89.0" layoutY="317.0" prefHeight="18.0" prefWidth="178.0" textFill="#ff0404" />
+      <Label fx:id="erru" layoutX="93.0" layoutY="430.0" prefHeight="18.0" prefWidth="200.0" textFill="RED" />
+      <ListView fx:id="liste_promo" layoutX="332.0" layoutY="265.0" prefHeight="200.0" prefWidth="243.0" />
+      <Button layoutX="332.0" layoutY="478.0" mnemonicParsing="false" onAction="#details_promo" text="Details Promo" />
+      <Button layoutX="485.0" layoutY="478.0" mnemonicParsing="false" onAction="#ajouter_promo" text="Ajouter Promo" />
+      <Button layoutX="25.0" layoutY="117.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
    </children>
 </AnchorPane>

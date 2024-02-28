@@ -21,7 +21,7 @@ public class Main {
        // Evenement ev = new Evenement("blackfriday",dateFormatted,"dzijdzijd");
        //se.ajouter(ev);
 
-        Promotion pr1 = new Promotion("humburger",10.5,dateFormatted);
+       // Promotion pr1 = new Promotion("humburger",10.5,dateFormatted);
 
 
 

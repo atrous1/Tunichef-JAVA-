@@ -5,28 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9dd1c85-a80d-4d70-9a29-3ef78ac5682b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AfficheEvenement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AjouterEvenement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/DetailsEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/Home.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/ItemEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/SupprimerEvenement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/MainFx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/AfficheEvenement.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/AjouterEvenement.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/DetailsEvent.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Home.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/SupprimerEvenement.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/itemEvent.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AjouterPromo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/DetailsPromo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/AjouterPromo.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DetailsPromo.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/HomePromo.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Evenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Evenement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AfficheEvenement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AjouterEvenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AjouterEvenement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/DetailsEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/DetailsEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/SupprimerEvenement.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Promotion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/service/IService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServiceEvenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServiceEvenement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServicePromotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServicePromotion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/MainFx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficheEvenement.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterEvenement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterEvenement.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsEvent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DetailsEvent.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/SupprimerEvenement.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +59,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "Maven.gestionEvenement [javafx:jlink].executor": "Run",
     "Maven.gestionEvenement [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
     "Maven.gestionEvenement [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
@@ -79,7 +78,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "settings.editor.selected.configurable": "google.protobuf.language",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -179,7 +178,7 @@
       <workItem from="1707862441070" duration="16225000" />
       <workItem from="1708348387578" duration="19779000" />
       <workItem from="1708516722015" duration="12443000" />
-      <workItem from="1708942231897" duration="18413000" />
+      <workItem from="1708942231897" duration="56293000" />
     </task>
     <servers />
   </component>

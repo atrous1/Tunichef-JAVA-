@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.DetailsPromo">
+   <children>
+      <ImageView fitHeight="451.0" fitWidth="685.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/hm.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="63.0" layoutY="178.0" text="Promotion Name" />
+      <Label layoutX="64.0" layoutY="227.0" text="Promotion Price" />
+      <Label layoutX="66.0" layoutY="276.0" text="Promotion Date" />
+      <TextField fx:id="promotion_name" layoutX="172.0" layoutY="174.0" />
+      <TextField fx:id="promotion_prix" layoutX="173.0" layoutY="223.0" />
+      <Button layoutX="98.0" layoutY="364.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <Button layoutX="274.0" layoutY="364.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Button layoutX="14.0" layoutY="97.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+      <TextField fx:id="date_promo" layoutX="173.0" layoutY="272.0" />
+   </children>
+</AnchorPane>
