@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="366.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AjoutProduitController">
+   <children>
+      <ImageView fitHeight="420.0" fitWidth="690.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/bckgg.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="descriptionProduit" layoutX="86.0" layoutY="202.0" stylesheets="@Assets/aff.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="radius" />
+         </styleClass></TextField>
+      <TextField fx:id="nomproduit" layoutX="86.0" layoutY="151.0" stylesheets="@Assets/aff.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="radius" />
+         </styleClass></TextField>
+      <TextField fx:id="prixproduit" layoutX="86.0" layoutY="253.0" stylesheets="@Assets/aff.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="radius" />
+         </styleClass></TextField>
+      <ImageView fx:id="imageproduit" fitHeight="125.0" fitWidth="168.0" layoutX="250.0" layoutY="132.0" onMouseClicked="#image_addp" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="ajouterproduit" layoutX="92.0" layoutY="305.0" mnemonicParsing="false" onAction="#ajouterp" stylesheets="@Assets/aff.css" text="ajouter produit" />
+      <Label layoutX="86.0" layoutY="132.0" text="nom de produit :" />
+      <Label layoutX="86.0" layoutY="183.0" text="description de produit :" />
+      <Label layoutX="86.0" layoutY="234.0" text="Prix produit :" />
+      <Label layoutX="254.0" layoutY="115.0" text="Insérer image :" />
+   </children>
+</AnchorPane>

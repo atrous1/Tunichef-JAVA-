@@ -8,20 +8,49 @@ package edu.esprit.entities;
 import java.util.List;
 import java.util.Objects;
 
+
 public class Menu {
     private int id_menu;
+    private int id_produit;
     private List<Produit> listProduit;
     private int nbr_page;
     private String categorie;
     private String origine;
 
+
     public Menu(int nbr_page, String categorie, String origine) {
+        this.nbr_page = nbr_page;
+        this.categorie = categorie;
+        this.origine = origine;
+
+    }
+
+
+
+    public Menu(int id_menu, int nbr_page, String categorie, String origine, int id_produit) {
+        this.id_menu = id_menu;
+        this.id_produit = id_produit;
         this.nbr_page = nbr_page;
         this.categorie = categorie;
         this.origine = origine;
     }
 
-    public Menu(List<Produit> listProduit, int nbr_page, String categorie, String origine) {
+    public Menu(int id_menu, int nbr_page, String categorie, String origine, List<Produit> listProduit) {
+        this.id_menu = id_menu;
+        this.listProduit = listProduit;
+        this.nbr_page = nbr_page;
+        this.categorie = categorie;
+        this.origine = origine;
+    }
+
+    public Menu(int nbr_page, String categorie, String origine,int id_produit) {
+        this.id_produit = id_produit;
+        this.nbr_page = nbr_page;
+        this.categorie = categorie;
+        this.origine = origine;
+    }
+
+    public Menu(int nbr_page, String categorie, String origine, List<Produit> listProduit) {
         this.listProduit = listProduit;
         this.nbr_page = nbr_page;
         this.categorie = categorie;
@@ -46,7 +75,13 @@ public class Menu {
     public void setListProduit(List<Produit> listProduit) {
         this.listProduit = listProduit;
     }
+    public int getId_produit() {
+        return id_produit;
+    }
 
+    public void setId_produit(int id_produit) {
+        this.id_produit = id_produit;
+    }
     public int getNbr_page() {
         return this.nbr_page;
     }
@@ -80,10 +115,6 @@ public class Menu {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId_menu(), getListProduit(), getNbr_page(), getCategorie(), getOrigine());
-    }
-
-    public String toString() {
-        return "menu{id_menu=" + this.id_menu + ", listProduit=" + this.listProduit + ", nbr_page=" + this.nbr_page + ", categorie='" + this.categorie + "', origine='" + this.origine + "'}";
+        return Objects.hash(getId_menu(), getId_produit(), getListProduit(), getNbr_page(), getCategorie(), getOrigine());
     }
 }

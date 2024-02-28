@@ -15,6 +15,13 @@ public class Produit {
     private double prix_produit;
     private Menu Menu;
 
+    public Produit(int id_produit, String nom_produit, String description_produit, double prix_produit) {
+        this.id_produit = id_produit;
+        this.nom_produit = nom_produit;
+        this.description_produit = description_produit;
+        this.prix_produit = prix_produit;
+    }
+
     public Produit(String nom_produit, String description_produit, String image_produit) {
         this.nom_produit = nom_produit;
         this.description_produit = description_produit;
@@ -36,6 +43,12 @@ public class Produit {
         this.nom_produit = nom_produit;
         this.description_produit = description_produit;
         this.image_produit = image_produit;
+        this.prix_produit = prix_produit;
+    }
+
+    public Produit(String nom_produit, String description_produit, double prix_produit) {
+        this.nom_produit = nom_produit;
+        this.description_produit = description_produit;
         this.prix_produit = prix_produit;
     }
 
