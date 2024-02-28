@@ -2,6 +2,11 @@ package edu.esprit.controllers;
 
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -9,6 +14,7 @@ import edu.esprit.entities.Menu;
 import edu.esprit.entities.Produit;
 import edu.esprit.services.ServiceMenu;
 import edu.esprit.services.ServiceProduit;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -28,7 +34,7 @@ public class AjoutMenu {
     private Button ajoutermenu;
 
     @FXML
-    private ComboBox<String> categoriep;
+    private TextField categoriep;
 
     @FXML
     private ComboBox<Produit> idp;
@@ -38,14 +44,17 @@ public class AjoutMenu {
 
     @FXML
     private TextField originep;
+    private Connection cnx;
 
     @FXML
     void ajouteM(ActionEvent event) {
         ServiceMenu sp = new ServiceMenu();
+        List<Produit> produits = fetchProduits();
+
         Menu menu1 = new Menu(Integer.parseInt(nbrpage.getText()),
-                (String) categoriep.getValue(),
+                categoriep.getText(),
                 originep.getText(),
-                (List<Produit>) idp.getValue() );
+                produits);
 
         sp.ajouterMenu(menu1);
 
@@ -57,10 +66,22 @@ public class AjoutMenu {
 
     }
 
+    private List<Produit> fetchProduits() {
+        ServiceProduit sp = new ServiceProduit(); // Assuming you have an instance of the service
+        return sp.afficherProduits();
+    }
+
+
+
     @FXML
     void initialize() {
-
-
+        List<Produit> produit = fetchProduits();
+        idp.setItems(FXCollections.observableArrayList(produit)); // Now using List<Produit>
     }
+
+
+
+
+
 
 }
