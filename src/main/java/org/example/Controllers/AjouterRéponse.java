@@ -7,7 +7,8 @@ import org.example.Services.ServiceReponse;
 import org.example.entities.Reclamation;
 
 import java.sql.SQLException;
-import java.util.Date;
+import java.util.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,8 +28,6 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,10 +58,30 @@ public class AjouterRéponse {
         try {
             // Récupérer les valeurs des champs de saisie
             String contenu = Contenu.getText();
+            // Vérifier si le contenu contient des chiffres
+            if (contenu.matches(".*\\d.*")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText(null);
+                alert.setContentText("Le contenu ne peut pas contenir de chiffres !");
+                alert.showAndWait();
+                return; // Arrêter le traitement si le contenu contient des chiffres
+            }
             Reclamation rec = new Reclamation();
             rec.setIdRec(21);
             // Créer une nouvelle date pour la réclamation (utilise la date actuelle)
               Date dateRep  = new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(dateRep);
+            int year = cal.get(Calendar.YEAR);
+            if (year < 2015 || year > 2050) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText(null);
+                alert.setContentText("La date de réponse doit être comprise entre 2015 et 2050 !");
+                alert.showAndWait();
+                return; // Arrêter le traitement si la date est invalide
+            }
             // Créer une nouvelle réclamation
             Reponse nouvelleReponse = new Reponse(rec,contenu, dateRep );
             // Ajouter la réclamation à la base de données
