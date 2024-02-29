@@ -10,69 +10,75 @@ import java.util.Set;
 
 
 public class ServiceReclamation implements IService<Reclamation> {
-    //Statement ste;
-    // Connection conn = DataSource.getInstance().getCnx();
+
     Connection cnx = DataSource.getInstance().getCnx();
 
-
     @Override
-    public void ajouter(Reclamation r) {
-
-        String req = "INSERT INTO `reclamation`(`idRec`,`id_user`, `Description`,`Avis`) VALUES (?,?,?,?)";
+    public void ajouter(Reclamation r)throws SQLException {
+        String req = "INSERT INTO `reclamation`(`idRec`,`idUser`, `Description`,`Avis`,`DateRec`) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, r.getIdRec());
-            ps.setInt(2, r.getId_user());
+            ps.setInt(2, r.getIdUser());
             ps.setString(3, r.getDescription());
             ps.setInt(4, r.getAvis());
+            ps.setDate(5, new java.sql.Date(r.getDateRec().getTime()));
             ps.executeUpdate();
-            System.out.println("reclamation added !");
+            System.out.println("Reclamation ajoutée avec succès !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
     }
-
     @Override
-    public List<Reponse> afficher() {
+    public void modifier(Reclamation exp) {
+
+        String req = "UPDATE reclamation SET  Description=?, Avis=? WHERE idRec=?";
+        try{
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, exp.getDescription());
+            ps.setInt(2, exp.getAvis());
+            ps.setInt(3, exp.getIdRec());
+            ps.executeUpdate();
+            System.out.println("Reclamation modifiée avec succès  !");
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    @Override
+    public List<Reponse> afficher()
+    {
         return null;
     }
 
-
-
     @Override
-    public void supprimer(int id_user) {
+    public void supprimer(int idRec) {
 
 
-        String req = "DELETE FROM reclamation WHERE id_user=?";
+        String req = "DELETE FROM reclamation WHERE idRec=?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, id_user);
+            ps.setInt(1, idRec);
             ps.executeUpdate();
-            System.out.println("Reclamation Suprimee !");
+            System.out.println("Reclamation Supprimée avec succès !");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-
         }
-
     }
 
     @Override
-    public Set<Reclamation> getAll() {
+    public Set<Reclamation> getAll()throws SQLException {
         Set<Reclamation> reclamations = new HashSet<>();
-        String req = "SELECT * FROM reclamation";
+        String req = " SELECT idUser, Description, Avis, DateRec FROM reclamation";
+
         try {
             Statement st = cnx.createStatement();
             ResultSet res = st.executeQuery(req);
             while (res.next()) {
-                int idRec = res.getInt(1);
-                int id_user = res.getInt(2);
-
-
-                String Description = res.getString(4);
+                int idUser = res.getInt(1);
+                String Description = res.getString(2);
                 int Avis = res.getInt(3);
-
-                Reclamation exp = new Reclamation(idRec, id_user, Description,Avis);
+                Date DateRec=(res.getDate(4));
+                Reclamation exp = new Reclamation( idUser, Description,Avis,DateRec);
                 reclamations.add(exp);
             }
         } catch (SQLException e) {
@@ -87,38 +93,32 @@ public class ServiceReclamation implements IService<Reclamation> {
         return null;
 
     }
-}
-/*
 
 
-}
-/*
-        @Override
-        public List<Reclamation> afficher () {
-            List<Reclamation> pers = new ArrayList<>();
-            try {
-                String req = "SELECT * FROM reclamation";
-                ste = conn.createStatement();
-                ResultSet result = ste.executeQuery(req);
-                System.out.println(result);
-                while (result.next()) {
-                    Reclamation resultPerson = new Reclamation(result.getInt("id_user"), result.getInt("Avis"), result.getString("description"));
-                    pers.add(resultPerson);
+
+    public Reclamation getReclamationById(int idRec) {
+        Reclamation reclamation = null;
+        String req = "SELECT * FROM reclamation WHERE idRec=?";
+        try (PreparedStatement ps = cnx.prepareStatement(req)) {
+            ps.setInt(1, idRec);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int idUser = rs.getInt("idUser");
+                    String description = rs.getString("Description");
+                    int avis = rs.getInt("Avis");
+                    Date DateRec=rs.getDate("DateRec");
+                    reclamation = new Reclamation(idRec, idUser, description, avis,DateRec);
                 }
-                System.out.println(pers);
-
-            } catch (SQLException ex) {
-                System.out.println(ex);
             }
-            return pers;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
-
-
-
-
-
+        return reclamation;
     }
-*/
+}
+
+
+
 
 
 

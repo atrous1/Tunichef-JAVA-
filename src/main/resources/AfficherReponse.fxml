@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controllers.AfficherReponse">
+<children>
+    <ImageView fitHeight="384.0" fitWidth="578.0" layoutX="10.0" layoutY="10.0">
+        <image>
+            <Image url="@Assets/backAff.png" />
+        </image>
+    </ImageView>
+      <TableView fx:id="reponse" layoutX="95.0" layoutY="118.0" prefHeight="200.0" prefWidth="354.0">
+        <columns>
+          <TableColumn fx:id="Contenu" prefWidth="177.5999755859375" text="Contenu" />
+          <TableColumn fx:id="dateRep" prefWidth="176.00006103515625" text="Date de la réponse" />
+        </columns>
+      </TableView>
+      <Button fx:id="supprimerid" layoutX="171.0" layoutY="345.0" mnemonicParsing="false" onAction="#supprimerReponse" text="Supprimer" />
+      <Button fx:id="Modbutt" layoutX="340.0" layoutY="345.0" mnemonicParsing="false" onAction="#modifierRep" text="Modifier" />
+
+
+</children>
+</AnchorPane>
