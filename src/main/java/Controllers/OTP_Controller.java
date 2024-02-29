@@ -96,7 +96,7 @@ public class OTP_Controller {
         while (i <= 2 && !test) {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Code Verification");
-            dialog.setContentText("Un code de verification est envoyé a votre numero de telephone");
+            dialog.setContentText("Un code de verification est envoyé a votre Email ");
             String code_saisie;
 
             Optional<String> result = dialog.showAndWait();

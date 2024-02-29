@@ -39,8 +39,23 @@ public class Home {
 
     }
     @FXML
-    void logout(ActionEvent event) {try {
+    void Profil(ActionEvent event) {
+        try {
+        Parent page1 = FXMLLoader.load(getClass().getResource("/GestionProfil.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        System.err.println(ex);
 
+    }
+
+
+    }
+    @FXML
+    void logout(ActionEvent event) {
+        try {
         Parent page1 = FXMLLoader.load(getClass().getResource("/Login.fxml"));
         Scene scene = new Scene(page1);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

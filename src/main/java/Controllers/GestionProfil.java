@@ -1,5 +1,14 @@
 package Controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.ResourceBundle;
+
 import Entities.Role;
 import Entities.User;
 import Services.UserService;
@@ -10,8 +19,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,16 +29,7 @@ import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.security.PublicKey;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
-
-public class   UserControler{
+public class GestionProfil {
 
     @FXML
     private ResourceBundle resources;
@@ -40,68 +38,27 @@ public class   UserControler{
     private URL location;
 
     @FXML
-    private Button bttn;
+    private TextField emailacc;
 
     @FXML
-    private TextField email;
+    private TextField mdpacc;
 
     @FXML
-    private TextField nom;
+    private TextField nomacc;
 
     @FXML
-    private TextField numtel;
+    private TextField numtelacc;
 
     @FXML
-    private TextField password;
-
+    private TextField prenomacc;
     @FXML
-    private TextField prenom;
-
-    @FXML
-    private ImageView image_user;
-
+    private ImageView imgacc;
     public String url_image;
     private String path;
     File selectedFile;
 
     @FXML
-    void SaveUser(ActionEvent event) {
-        UserService us = new UserService();
-        User user1 =  new User(nom.getText(), prenom.getText(), Integer.parseInt(numtel.getText()),email.getText(),password.getText(),Role.CLIENT, url_image);
-        if (us.test_Tel(String.valueOf(user1.getNumtel())) == false && us.test_Email(user1.getEmail()) == false)
-        {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Verifiez votre Email et num de tel");
-            alert.setContentText("Verifiez votre Email et num de tel");
-            alert.show();        }
-        else if (us.test_Tel(String.valueOf(user1.getNumtel())) == true && us.test_Email(user1.getEmail()) == false) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Verifiez votre Email");
-            alert.setContentText("Verifiez votre Email");
-            alert.show();
-        }
-        else if (us.test_Tel(String.valueOf(user1.getNumtel())) == false && us.test_Email(user1.getEmail()) == true) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Verifiez votre num de tel");
-            alert.setContentText("Verifiez votre num de tel");
-            alert.show();
-        }
-        else {
-            try {
-                us.ajouterUser(user1);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("User Ajoutée");
-                alert.setContentText("User Ajoutée !");
-                alert.show();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-
-    }
-    @FXML
-    void Login(ActionEvent event) {
+    void logoutt(ActionEvent event) {
         try {
 
             Parent page1 = FXMLLoader.load(getClass().getResource("/Login.fxml"));
@@ -113,13 +70,65 @@ public class   UserControler{
             System.err.println(ex);
 
         }
-
     }
+        @FXML
+    void Modacc(ActionEvent event) {
+        try {
+            int id = item_user.u.getId();
+
+            User user = new User();
+            user.setNom(nomacc.getText());
+            user.setPrenom(prenomacc.getText());
+            user.setNumtel(Integer.parseInt(numtelacc.getText()));
+            user.setEmail(emailacc.getText());
+            user.setPassword(mdpacc.getText());
+            user.setImage(item_user.u.getImage());
+
+            UserService userService = new UserService();
+
+            userService.modifierUser(user, id);
+
+            Parent page1 = FXMLLoader.load(getClass().getResource("/GestionProfil.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
     @FXML
-    void initialize() {
+    void Supp(ActionEvent event) {
+            try {
+                UserService userService = new UserService();
 
+                userService.supprimerUser(item_user.u.getId());
 
-        image_user.setOnDragOver(new EventHandler<DragEvent>() {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/Login.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println(ex);
+            }
+        }
+
+    @FXML
+    void initialize() throws FileNotFoundException {
+
+        UserService us = new UserService();
+        User userr = us.rechercheUser(Login.idUser).get(0);
+        nomacc.setText(userr.getNom());
+        prenomacc.setText(userr.getPrenom());
+        numtelacc.setText(String.valueOf(userr.getNumtel()));
+        emailacc.setText(userr.getEmail());
+        mdpacc.setText(userr.getPassword());
+        String imagePath = "C:/xampp/htdocs/user_images/" + userr.getImage();
+        imgacc.setImage(new Image(new FileInputStream(imagePath)));
+        imgacc.setOnDragOver(new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
                 Dragboard db = event.getDragboard();
                 if (db.hasFiles()) {
@@ -130,7 +139,7 @@ public class   UserControler{
             }
         });
 
-        image_user.setOnDragDropped(new EventHandler<DragEvent>() {
+        imgacc.setOnDragDropped(new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
                 Dragboard db = event.getDragboard();
                 boolean success = false;
@@ -141,10 +150,9 @@ public class   UserControler{
                         url_image = file.getName();
                         selectedFile = new File(file.getAbsolutePath());
                         System.out.println("Drag and drop file done and path=" + file.getAbsolutePath());//file.getAbsolutePath(:\"C:\Users\X\Desktop\ScreenShot.6.png"
-                        image_user.setImage(new Image("file:" + file.getAbsolutePath()));
+                        imgacc.setImage(new Image("file:" + file.getAbsolutePath()));
                         File destinationFile = new File("C:\\xampp\\htdocs\\user_images\\" + file.getName());
                         try {
-                            // Copy the selected file to the destination file
                             Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                         } catch (IOException e) {
                             System.err.println(e);
@@ -156,11 +164,10 @@ public class   UserControler{
             }
         });
 
-        image_user.setImage(new Image("file:C:\\Users\\user\\Desktop\\drag-drop.gif"));
 
     }
     @FXML
-     void image_add (MouseEvent event) {
+    void imgacc_add (MouseEvent event) {
 
         FileChooser fc = new FileChooser();
         fc.setInitialDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
@@ -179,7 +186,7 @@ public class   UserControler{
 
             //url_image = file.toURI().toString();
             System.out.println(selectedFile.toURI().toString());
-            image_user.setImage(image1);
+            imgacc.setImage(image1);
 
             // Create a new file in the destination directory
             File destinationFile = new File("C:\\xampp\\htdocs\\user_images\\" + selectedFile.getName());
@@ -196,6 +203,5 @@ public class   UserControler{
         }
 
     }
-
 
 }

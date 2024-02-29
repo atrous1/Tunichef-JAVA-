@@ -1,8 +1,6 @@
 package Controllers;
 
 
-
-import Entities.Role;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -46,6 +44,7 @@ public class Login implements Initializable  {
     private ToggleButton toggleButton;
     @FXML
     private Label ShownPassword;
+    public static int idUser;
 
     @FXML
     void passwordFieldKeyTyped(KeyEvent event) {
@@ -66,13 +65,12 @@ public class Login implements Initializable  {
         }
 
         @FXML
-        void onLoginButtonClick(MouseEvent event) {
+        void onLoginButtonClick(MouseEvent event) throws SQLException {
             String email = email_login.getText();
             String password = mdp_login.getText();
 
             Connection connection = DataSource.getInstance().getCnx();  // Get connection
 
-            try {
                 String query = "SELECT * FROM user WHERE email = ? AND password = ?";  // Query
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, email);
@@ -82,6 +80,7 @@ public class Login implements Initializable  {
 
                 if (resultSet.next()) {  // If user exists
                     String role = resultSet.getString("role");  // Get role from database
+                    idUser=resultSet.getInt("id");
 
                     try {  // Handle FXML loading exceptions
                         if (role.equals("ADMIN")) {
@@ -106,9 +105,7 @@ public class Login implements Initializable  {
                     System.out.println("Invalid credentials.");  // Display error message
                     // ... handle incorrect credentials (e.g., display error message to user)
                 }
-            } catch (SQLException e) {
-                System.out.println("SQL error: " + e.getMessage());
-            }
+
         }
     @FXML
     void inscri(ActionEvent event) {
