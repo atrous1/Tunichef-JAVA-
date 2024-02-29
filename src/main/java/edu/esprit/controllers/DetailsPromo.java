@@ -1,5 +1,6 @@
 package edu.esprit.controllers;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -37,6 +38,11 @@ public class DetailsPromo {
 
     @FXML
     private TextField promotion_prix;
+    @FXML
+    private Label errP;
+
+    @FXML
+    private Label errPP;
 
     @FXML
     void modifier(ActionEvent event) throws IOException {
@@ -44,21 +50,22 @@ public class DetailsPromo {
         String name = promotion_name.getText();
         Double prix = Double.valueOf(promotion_prix.getText());
 
-        ServiceEvenement se = new ServiceEvenement();
 
-        Evenement evenement = se.getOneById(DetailsEvent.idEvent);
+            ServiceEvenement se = new ServiceEvenement();
 
-        Promotion promotion = new Promotion(name, prix, DetailsEvent.date, evenement);
+            Evenement evenement = se.getOneById(DetailsEvent.idEvent);
 
-        ServicePromotion sp = new ServicePromotion();
+            Promotion promotion = new Promotion(name, prix, DetailsEvent.date, evenement);
 
-        sp.modifier(promotion, id);
+            ServicePromotion sp = new ServicePromotion();
 
-        Parent page1 = FXMLLoader.load(getClass().getResource("/DetailsEvent.fxml"));
-        Scene scene = new Scene(page1);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+            sp.modifier(promotion, id);
+
+            Parent page1 = FXMLLoader.load(getClass().getResource("/DetailsEvent.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
 
     }
 

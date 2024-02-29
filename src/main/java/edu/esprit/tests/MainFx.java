@@ -14,9 +14,9 @@ import java.util.ResourceBundle;
 
 public class MainFx  extends Application{
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Home.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 673, 505);
-        stage.setTitle("Home ");
+        stage.setTitle("koujina ");
         stage.setScene(scene);
         stage.show();
     }

@@ -5,27 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9dd1c85-a80d-4d70-9a29-3ef78ac5682b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AjouterPromo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/DetailsPromo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/AjouterPromo.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/DetailsPromo.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/HomePromo.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/ClientH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/ClientP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/ItemP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ClientH.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ClientP.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/itemP.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AfficheEvenement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AjouterEvenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AjouterEvenement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/DetailsEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/DetailsEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/SupprimerEvenement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/entities/Promotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/service/IService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServiceEvenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServiceEvenement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServicePromotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/service/ServicePromotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AjouterPromo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/AjouterPromo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/DetailsPromo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/controllers/DetailsPromo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/tests/MainFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficheEvenement.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterEvenement.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterEvenement.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsEvent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DetailsEvent.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/SupprimerEvenement.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterPromo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterPromo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/HomePromo.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +59,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mahran/IdeaProjects/gestionEvenement",
+    "last_opened_file_path": "C:/gestion",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -178,7 +169,7 @@
       <workItem from="1707862441070" duration="16225000" />
       <workItem from="1708348387578" duration="19779000" />
       <workItem from="1708516722015" duration="12443000" />
-      <workItem from="1708942231897" duration="56293000" />
+      <workItem from="1708942231897" duration="68123000" />
     </task>
     <servers />
   </component>
