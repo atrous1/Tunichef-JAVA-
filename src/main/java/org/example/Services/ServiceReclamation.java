@@ -1,12 +1,19 @@
 package org.example.Services;
+//import com.google.protobuf.Message;
+import com.twilio.Twilio;
+import com.twilio.rest.messaging.v1.service.PhoneNumber;
 import org.example.entities.Reponse;
 import org.example.utils.DataSource;
 import java.sql.*;
 import org.example.entities.Reclamation;
-import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import com.twilio.rest.api.v2010.account.Message;
+
+
+import static com.google.protobuf.Message.*;
 
 
 public class ServiceReclamation implements IService<Reclamation> {
@@ -114,6 +121,30 @@ public class ServiceReclamation implements IService<Reclamation> {
             System.out.println(e.getMessage());
         }
         return reclamation;
+    }
+    private static final String ACCOUNT_SID = "AC5f30c61a472e288900d2e1fb14d3b5b3";
+    private static final String AUTH_TOKEN = "348eab68dd79dd13eb813691337783d5";
+    private static final String TWILIO_PHONE_NUMBER = "+17573472962";
+    private static final String toPhoneNumber = "+20427036";
+    // Define the method to send the SMS message
+    @Override
+    public void sendSms(String toPhoneNumber, String messageText) {
+        // Initialize the Twilio API client
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+        // Set the phone numbers for the SMS message
+        com.twilio.type.PhoneNumber to = new com.twilio.type.PhoneNumber(toPhoneNumber);
+        com.twilio.type.PhoneNumber from = new com.twilio.type.PhoneNumber(TWILIO_PHONE_NUMBER);
+
+        // Use the Message creator to send the SMS message
+        Message message = Message.creator(
+                to,
+                from,
+                messageText
+        ).create();
+
+        // Print a confirmation message
+        System.out.println("Message SID: " + message.getSid());
     }
 }
 

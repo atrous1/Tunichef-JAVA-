@@ -14,4 +14,7 @@ public interface IService<T> {
 
    public T getOneById(int id);
     public Set<T> getAll() throws  SQLException;
+
+    // Define the method to send the SMS message
+    void sendSms(String toPhoneNumber, String messageText);
 }

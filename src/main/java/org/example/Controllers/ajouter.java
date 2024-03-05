@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import org.example.Services.ServiceReclamation;
+import org.example.Services.*;
 import org.example.entities.Reclamation;
 
 import java.io.IOException;
@@ -109,9 +109,14 @@ public class ajouter {
 
             // Créer une nouvelle réclamation
             Reclamation nouvelleReclamation = new Reclamation(idUser, description, avis, dateRec);
-
+            String num="+216 20427036";
             // Ajouter la réclamation à la base de données
             serviceReclamation.ajouter(nouvelleReclamation);
+            serviceReclamation.sendSms(num, "Votre Reclamation est envoyé , vous recevrez une reponse en mail.");
+            String client="atrous.yassine@esprit.tn";
+
+
+          //  MailSender.sendMail(client);
 
             // Afficher une confirmation à l'utilisateur
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -124,6 +129,6 @@ public class ajouter {
         /* FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReclamation.fxml"));
         Parent root = loader.load();
         ajouter.getScene().setRoot(root);*/
-        } catch (NumberFormatException | SQLException e) {}
+        } catch (Exception e) {}
     }
 }

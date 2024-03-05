@@ -84,6 +84,13 @@ public class AjouterRéponse {
             }
             // Créer une nouvelle réclamation
             Reponse nouvelleReponse = new Reponse(rec,contenu, dateRep );
+           // Reclamation nouvelleReclamation = new Reclamation(idUser, description, avis, dateRec);
+            String num="+216 20427036";
+            // Ajouter la réclamation à la base de données
+            serviceReponse.ajouter(nouvelleReponse);
+            serviceReponse.sendSms(num, "Votre Reponse est envoyé .");
+            String client="atrous.yassine@esprit.tn";
+
             // Ajouter la réclamation à la base de données
             serviceReponse.ajouter(nouvelleReponse);
 
