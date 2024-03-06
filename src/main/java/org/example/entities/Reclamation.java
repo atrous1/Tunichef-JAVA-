@@ -25,9 +25,9 @@ public class Reclamation {
         this.idRec = idRec;
         this.idUser = idUser;
 
-        Description = description;
-        Avis = avis;
-        DateRec = dateRec;
+        this.Description = description;
+        this.Avis = avis;
+        this.DateRec = dateRec;
     }
 
     public Reclamation(TextField description, TextField avis, DatePicker date) {

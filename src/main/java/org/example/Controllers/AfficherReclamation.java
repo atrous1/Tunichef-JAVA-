@@ -4,13 +4,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.Services.ServiceReclamation;
+import javafx.scene.layout.BorderPane;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
-
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,20 +27,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.scene.control.Button;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import org.example.entities.Reclamation;
-import org.example.utils.DataSource;
 
 public class AfficherReclamation implements Initializable {
 
-
+    private Reclamation addedReclamation;
     public Button modifier;
-
+    @FXML
+    private Button boutonPDF;
     public Button deleteId;
+    public Button pdf;
     @FXML
     private TableView<Reclamation> reclamation;
     @FXML
@@ -46,10 +49,97 @@ public class AfficherReclamation implements Initializable {
     @FXML
     private TableColumn<Reclamation, Date> date;
 
-    DataSource connexion = DataSource.getInstance();
+    @FXML
+    private void handleGenererPDF(ActionEvent event) {
+        genererPDF();
+    }
+
+
+    private void genererPDF() {
+        Reclamation selectedReclamation = reclamation.getSelectionModel().getSelectedItem(); // Récupérer la réclamation sélectionnée
+        if (selectedReclamation != null) {
+            try {
+                PDDocument document = new PDDocument();
+                PDPage page = new PDPage();
+                document.addPage(page);
+
+                PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+                PDType0Font font = PDType0Font.load(document, getClass().getResourceAsStream("/fonts/CairoPlay-VariableFont_slntwght.ttf"));
+
+                float margin = 0;
+
+                PDImageXObject borderImage = PDImageXObject.createFromFile("C:\\Users\\USER\\IdeaProjects\\gestionReclamation\\src\\main\\resources\\Assets\\CadrePDf.jpg", document);
+                contentStream.drawImage(borderImage, margin, margin, page.getMediaBox().getWidth() - 2 * margin, page.getMediaBox().getHeight() - 2 * margin);
+
+                float titleFontSize = 25;
+                contentStream.setNonStrokingColor(Color.BLACK);
+                contentStream.setFont(font, titleFontSize);
+                float titleX = (page.getMediaBox().getWidth() - font.getStringWidth("Détails de Réclamation") / 1000 * titleFontSize) / 2 + 40;
+                float titleY = page.getMediaBox().getHeight() - 3 * (margin + 50);
+                contentStream.setNonStrokingColor(new Color(0, 0, 139));
+                writeText(contentStream, "Détails de réclamation", titleX, titleY, font, titleFontSize);
+
+                float normalFontSize = 14;
+                contentStream.setFont(font, normalFontSize);
+
+                float infoX = (margin + 30) * 3;
+                float infoY = titleY - normalFontSize * 6;
+                float infoSpacing = normalFontSize * 2;
+
+                contentStream.setNonStrokingColor(Color.BLACK);
+
+                // Création du tableau
+                float tableTopY = infoY - normalFontSize;
+                float tableBottomY = margin + 30; // Hauteur de la table
+
+                float column1X = infoX; // Position X de la première colonne
+                float column2X = column1X + 200; // Position X de la deuxième colonne
+                float column3X = column2X + 200; // Position X de la troisième colonne
+
+                // En-têtes de colonne
+                writeText(contentStream, "Date: " + formatDate(selectedReclamation.getDateRec()), column1X, tableTopY, font, normalFontSize);
+                writeText(contentStream, "Description: " +selectedReclamation.getDescription(), column2X, tableTopY, font, normalFontSize);
+                writeText(contentStream, "Avis: " + String.valueOf(selectedReclamation.getAvis()), column3X, tableTopY, font, normalFontSize);
+
+                // Contenu de la ligne
+                contentStream.close(); // Fermer le flux de contenu
+
+                // Utiliser le nom de la réclamation pour nommer le fichier PDF
+                File file = new File(selectedReclamation.getDescription() + ".pdf");
+                document.save(file);
+                document.close();
+
+                Desktop.getDesktop().open(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private String formatDate(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(date);
+    }
+    private void writeText(PDPageContentStream contentStream, String text, float x, float y, PDType0Font font, float fontSize) throws IOException {
+        String[] lines = text.split("\n");
+        float leading = 1.5f * fontSize; // Ajustez l'espacement des lignes selon la taille de la police
+
+        contentStream.beginText();
+        contentStream.setFont(font, fontSize);
+        contentStream.newLineAtOffset(x, y);
+
+        for (String line : lines) {
+            contentStream.showText(line);
+            contentStream.newLineAtOffset(0, -leading);
+        }
+
+        contentStream.endText();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            addedReclamation = new Reclamation(); // Or whatever initialization logic is appropriate for your application
 
             ServiceReclamation crud = new ServiceReclamation();
             ObservableList<Reclamation> data = FXCollections.observableArrayList(crud.getAll());
@@ -78,18 +168,13 @@ public class AfficherReclamation implements Initializable {
                 return cell;
             });
             reclamation.setItems(data);
+            boutonPDF.setOnAction(event -> genererPDF());
 
         } catch (SQLException ex) {
             System.out.println("here");
             Logger.getLogger(AfficherReclamation.class.getName()).log(Level.SEVERE, null, ex);
-
-
         }
-
     }
-
-
-
 
     public void delete(ActionEvent actionEvent) {
         int selectedIndex = reclamation.getSelectionModel().getSelectedIndex();
@@ -105,55 +190,12 @@ public class AfficherReclamation implements Initializable {
             confirmationAlert.setTitle("Confirmation Dialog");
             confirmationAlert.setHeaderText("Confirmer la suppression");
             confirmationAlert.setContentText("Êtes-vous sûr de vouloir supprimer cette réclamation?");
-
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                try {
-                    ServiceReclamation ser = new ServiceReclamation();
-                    ser.supprimer(reclamation.getSelectionModel().getSelectedItem().getIdRec());
-
-                    // Rafraîchir la TableView avec les données mises à jour
-                    ServiceReclamation crud = new ServiceReclamation();
-                    ObservableList<Reclamation> data = FXCollections.observableArrayList(crud.getAll());
-                    reclamation.setItems(data);
-
-                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                    successAlert.setTitle("Réclamation supprimée");
-                    successAlert.setContentText("La réclamation a été supprimée avec succès");
-                    successAlert.showAndWait();
-                } catch (SQLException ex) {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setTitle("Erreur");
-                    errorAlert.setContentText("Une erreur est survenue lors de la suppression de la réclamation");
-                    errorAlert.showAndWait();
-                    System.out.println(ex);
-                }
+                reclamation.getItems().remove(selectedIndex);
+                ServiceReclamation serviceReclamation = new ServiceReclamation();
+                serviceReclamation.supprimer(selectedIndex);
             }
         }
     }
-
-
-    public void modifierRec (ActionEvent actionEvent) throws IOException {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/modifierController.fxml"));
-                Parent root = loader.load();
-                modifierController dcc = loader.getController();
-                dcc.setModifierController(this); // Pass the current instance of AfficherReclamation
-                Reclamation selectedrec = reclamation.getSelectionModel().getSelectedItem();
-                dcc.selectedRec(selectedrec); // Pass the selected Reclamation object to modifierController
-                System.out.println(selectedrec);
-                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-            } catch (IOException ex) {
-                Logger.getLogger(AfficherReclamation.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-
-    }
-
-
-
-
-
-
+}

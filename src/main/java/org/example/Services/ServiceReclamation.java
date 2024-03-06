@@ -1,7 +1,5 @@
 package org.example.Services;
-//import com.google.protobuf.Message;
 import com.twilio.Twilio;
-import com.twilio.rest.messaging.v1.service.PhoneNumber;
 import org.example.entities.Reponse;
 import org.example.utils.DataSource;
 import java.sql.*;
@@ -13,7 +11,6 @@ import java.util.Set;
 import com.twilio.rest.api.v2010.account.Message;
 
 
-import static com.google.protobuf.Message.*;
 
 
 public class ServiceReclamation implements IService<Reclamation> {
