@@ -1,5 +1,6 @@
 package org.example.Controllers;
 
+import com.sun.javafx.charts.Legend;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,8 +14,10 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import javafx.scene.control.TextField;
 
 import java.awt.*;
+//import java.awt.TextField;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -48,6 +51,9 @@ public class AfficherReclamation implements Initializable {
     private TableColumn<Reclamation,Integer> avis;
     @FXML
     private TableColumn<Reclamation, Date> date;
+    // AJOUTER RECHERCHE
+    @FXML
+    private TextField searchField;
 
     @FXML
     private void handleGenererPDF(ActionEvent event) {
@@ -139,7 +145,7 @@ public class AfficherReclamation implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            addedReclamation = new Reclamation(); // Or whatever initialization logic is appropriate for your application
+            addedReclamation = new Reclamation(); // Initialisation appropriée de votre application
 
             ServiceReclamation crud = new ServiceReclamation();
             ObservableList<Reclamation> data = FXCollections.observableArrayList(crud.getAll());
@@ -167,7 +173,14 @@ public class AfficherReclamation implements Initializable {
                 };
                 return cell;
             });
+
             reclamation.setItems(data);
+
+            // Ajoutez un gestionnaire d'événements pour le champ de recherche
+            searchField.setOnAction(event -> {
+                filterReclamations(searchField.getText(), data);
+            });
+
             boutonPDF.setOnAction(event -> genererPDF());
 
         } catch (SQLException ex) {
@@ -175,6 +188,7 @@ public class AfficherReclamation implements Initializable {
             Logger.getLogger(AfficherReclamation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
     public void delete(ActionEvent actionEvent) {
         int selectedIndex = reclamation.getSelectionModel().getSelectedIndex();
@@ -197,5 +211,19 @@ public class AfficherReclamation implements Initializable {
                 serviceReclamation.supprimer(selectedIndex);
             }
         }
+
+    }
+    @FXML
+    private void filterReclamations(String keyword, ObservableList<Reclamation> originalList) {
+        ObservableList<Reclamation> filteredList = FXCollections.observableArrayList();
+        for (Reclamation rec : originalList) {
+            if (rec.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                filteredList.add(rec);
+            }
+        }
+        reclamation.setItems(filteredList);
+    }
+
+    public void filterReclamations(ActionEvent actionEvent) {
     }
 }
