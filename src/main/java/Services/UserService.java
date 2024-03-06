@@ -3,14 +3,19 @@ package Services;
 import Entities.Role;
 import Entities.User;
 import Utils.DataSource;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserService implements IService{
-
+private String numtell;
     Connection conn = DataSource.getInstance().getCnx();
     @Override
     public void ajouterUser(User user) throws SQLException {
@@ -99,19 +104,32 @@ public class UserService implements IService{
     public boolean test_Tel(String numtel) {
         int i;
 
-        if (numtel.length() != 8) {
+        if (numtel.length() != 12) {
             return false;
         }
 
         for (i = 0; i < numtel.length(); i++) {
 
-            if ((!(numtel.charAt(i) >= '0' && numtel.charAt(i) <= '9')) || (test_num_telephonique(numtel) == false)) {
+            if ((!(numtel.charAt(i) >= '0' && numtel.charAt(i) <= '9')) ||  (!test_NumTelWithPrefix(numtel))){
                 return false;
             }
 
         }
         return true;
     }
+    @Override
+    public boolean test_NumTelWithPrefix(String numtel) {
+        if (numtel.length() != 12) {
+            return false;
+        }
+
+        if (!numtel.matches("^\\+216\\d{8}$")) {
+            return false;
+        }
+
+        return true;
+    }
+
 
     @Override
     public boolean test_Email(String mail) {
@@ -185,6 +203,36 @@ public class UserService implements IService{
 
         return list;
     }
+
+    public static boolean isValidDomain(String domain) {
+        try {
+            InetAddress.getByName(domain);
+            System.out.println("valid domain");
+            return true;
+        } catch (UnknownHostException e) {
+            System.out.println("unvalid domain");
+            return false; // Domain does not exist
+        }
+    }
+    public static boolean isValidEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            return false;
+        }
+
+        // Regular expression for basic email validation
+        String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+
+        if (!matcher.matches()) {
+            return false;
+        }
+
+        // Validate domain existence
+        String domain = email.substring(email.indexOf('@') + 1);
+        return isValidDomain(domain);
+    }
+
 
     @Override
     public boolean verfier_mail(String mail) {

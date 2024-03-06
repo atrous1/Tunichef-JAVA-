@@ -10,28 +10,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMouseClicked="#Click" prefHeight="231.0" prefWidth="295.0" stylesheets="@../../../../../GitHub/Tunichef/src/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.item_user">
+<AnchorPane onMouseClicked="#Click" prefHeight="213.0" prefWidth="346.0" stylesheets="@../../../../../GitHub/Tunichef/src/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.item_user">
     <children>
       <ImageView fitHeight="231.0" fitWidth="345.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Assets/2.jpg" />
+            <Image url="@Assets/item.png" />
          </image>
       </ImageView>
-        <VBox alignment="TOP_CENTER" layoutY="-14.0" prefHeight="238.0" prefWidth="330.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-14.0">
+        <VBox alignment="TOP_CENTER" layoutY="-14.0" prefHeight="195.0" prefWidth="336.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-14.0">
             <children>
-                <HBox prefHeight="80.0" prefWidth="362.0">
+            <HBox prefHeight="95.0" prefWidth="320.0" />
+            <HBox prefHeight="80.0" prefWidth="320.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+                <ImageView fx:id="img" fitHeight="96.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true" />
+                <HBox prefHeight="0.0" prefWidth="316.0">
                     <children>
-                        <Label fx:id="nom_item" prefHeight="42.0" prefWidth="121.0" text="Nom" textFill="WHITE">
+                        <Label fx:id="nom_item" prefHeight="42.0" prefWidth="121.0" text="Nom" textFill="#833409">
                             <font>
                                 <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                             </font>
                         </Label>
-                        <Label fx:id="prenom_item" prefHeight="46.0" prefWidth="157.0" text="Prénom" textFill="WHITE">
+                        <Label fx:id="prenom_item" prefHeight="46.0" prefWidth="133.0" text="Prénom" textFill="#833409">
                             <font>
                                 <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                             </font>
                         </Label>
-                        <Label fx:id="role_item" prefHeight="50.0" prefWidth="112.0" text="Role" textFill="WHITE">
+                        <Label fx:id="role_item" prefHeight="50.0" prefWidth="112.0" text="Role" textFill="#833409">
                             <font>
                                 <Font name="Berlin Sans FB Demi Bold" size="24.0" />
                             </font>
@@ -41,12 +45,11 @@
                         <Insets left="20.0" top="20.0" />
                     </VBox.margin>
                 </HBox>
-                <ImageView fx:id="img" fitHeight="123.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </VBox>
-      <Label layoutX="8.0" layoutY="2.0" text="Nom:" textFill="WHITE" />
-      <Label layoutX="97.0" layoutY="4.0" text="Prénom:" textFill="WHITE" />
-      <Label layoutX="238.0" layoutY="4.0" text="Role:" textFill="WHITE" />
+      <Label layoutX="8.0" layoutY="135.0" text="Nom:" textFill="#833409" />
+      <Label layoutX="97.0" layoutY="133.0" text="Prénom:" textFill="#833409" />
+      <Label layoutX="238.0" layoutY="131.0" text="Role:" textFill="#833409" />
     </children>
     <styleClass>
         <String fx:value="fruit-item" />

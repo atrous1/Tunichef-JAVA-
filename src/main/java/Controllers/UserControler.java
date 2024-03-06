@@ -68,24 +68,33 @@ public class   UserControler{
     void SaveUser(ActionEvent event) {
         UserService us = new UserService();
         User user1 =  new User(nom.getText(), prenom.getText(), Integer.parseInt(numtel.getText()),email.getText(),password.getText(),Role.CLIENT, url_image);
-        if (us.test_Tel(String.valueOf(user1.getNumtel())) == false && us.test_Email(user1.getEmail()) == false)
+        if (!us.test_Tel(String.valueOf(user1.getNumtel())) && !us.test_Email(user1.getEmail()))
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Verifiez votre Email et num de tel");
-            alert.setContentText("Verifiez votre Email et num de tel");
+            alert.setContentText("Verifiez votre Email et num de tel ");
             alert.show();        }
-        else if (us.test_Tel(String.valueOf(user1.getNumtel())) == true && us.test_Email(user1.getEmail()) == false) {
+        else if (us.test_Tel(String.valueOf(user1.getNumtel())) && !us.test_Email(user1.getEmail()) && !UserService.isValidEmail(user1.getEmail())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Verifiez votre Email");
             alert.setContentText("Verifiez votre Email");
             alert.show();
         }
-        else if (us.test_Tel(String.valueOf(user1.getNumtel())) == false && us.test_Email(user1.getEmail()) == true) {
+        else if (!us.test_NumTelWithPrefix("+216"+user1.getNumtel())) {
+            System.out.println("+216"+user1.getNumtel());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Verifiez votre num de tel");
-            alert.setContentText("Verifiez votre num de tel");
+            alert.setContentText("Verifiez votre num de tel +216 / 8 Chiffres");
             alert.show();
         }
+        else if(!UserService.isValidEmail(user1.getEmail()) && us.test_Tel(String.valueOf(user1.getNumtel())) && us.test_Email(user1.getEmail()))
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Verifiez votre num de Email");
+            alert.setContentText("Les informations de l'Email sont invalides ! S'il vous plaît, mettez une addresse mail valid.");
+            alert.show();
+        }
+
         else {
             try {
                 us.ajouterUser(user1);
@@ -113,7 +122,6 @@ public class   UserControler{
             System.err.println(ex);
 
         }
-
     }
     @FXML
     void initialize() {
@@ -160,15 +168,16 @@ public class   UserControler{
 
     }
     @FXML
-     void image_add (MouseEvent event) {
+    void image_add (MouseEvent event) {
 
         FileChooser fc = new FileChooser();
         fc.setInitialDirectory(new File(System.getProperty("user.home") + "\\Desktop"));
         fc.setTitle("Veuillez choisir l'image");
         fc.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image", ".jpg", ".png"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                 new FileChooser.ExtensionFilter("PNG", "*.png"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg")
+                new FileChooser.ExtensionFilter("Image", ".jpg", ".png")
+
         );
         selectedFile = fc.showOpenDialog(null);
 

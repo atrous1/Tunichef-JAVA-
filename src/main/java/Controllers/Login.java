@@ -3,6 +3,7 @@ package Controllers;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
@@ -22,6 +23,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 public class Login implements Initializable  {
 
@@ -89,12 +92,24 @@ public class Login implements Initializable  {
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene);
                             stage.show();
+                            Notifications.create()
+                                    .darkStyle()
+                                    .title("Bienvenue, Cher Administrateur du Restaurant ! Découvrez les outils de gestion pour améliorer l'expérience culinaire de vos clients sur le tableau de bord administrateur.")
+                                    .position(Pos.BOTTOM_RIGHT) // Modifier la position ici
+                                    .hideAfter(Duration.seconds(20))
+                                    .show();
                         } else if (role.equals("CLIENT")) {
                             Parent page1 = FXMLLoader.load(getClass().getResource("/Home.fxml"));
                             Scene scene = new Scene(page1);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene);
                             stage.show();
+                            Notifications.create()
+                                    .darkStyle()
+                                    .title("Bonjour, cher Client ! Explorez nos délicieux plats, commandez en ligne et profitez d'une expérience gastronomique exceptionnelle.")
+                                    .position(Pos.BOTTOM_RIGHT) // Modifier la position ici
+                                    .hideAfter(Duration.seconds(20))
+                                    .show();
                         } else {
                             System.out.println("Unknown user role: " + role);  // Handle unknown roles
                         }

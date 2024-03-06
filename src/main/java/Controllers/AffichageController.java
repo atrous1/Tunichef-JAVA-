@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -19,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -48,10 +50,30 @@ public class AffichageController {
 
     @FXML
     private ScrollPane scroll;
+    @FXML
+    private TextField Chercher;
 
     private List<User> UserDataList = FXCollections.observableArrayList();
     private UserService userService = new UserService();
     private item_user.MyListener myListener;
+
+
+
+
+
+    @FXML
+    void out(ActionEvent event) {
+        try {
+            Parent page1 = FXMLLoader.load(getClass().getResource("/Login.fxml"));
+            Scene scene = new Scene(page1);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException EX) {
+            System.err.println(EX);
+
+        }
+    }
 
     @FXML
     void details(ActionEvent event) {
@@ -69,6 +91,47 @@ public class AffichageController {
         }
 
     }
+    @FXML
+    void search() {
+        String searchTerm = Chercher.getText().trim().toLowerCase();
+        List<User> searchResults = new ArrayList<>();
+
+        for (User user : UserDataList) {
+            if (user.getNom().toLowerCase().contains(searchTerm) || user.getPrenom().toLowerCase().contains(searchTerm)) {
+                searchResults.add(user);
+            }
+        }
+
+        displaySearchResults(searchResults);
+    }
+
+    private void displaySearchResults(List<User> searchResults) {
+        // Clear the existing grid
+        grid.getChildren().clear();
+
+        int column = 0;
+        int row = 3;
+
+        for (User user : searchResults) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/item_user.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                item_user item = fxmlLoader.getController();
+                item.setData(user.getId(), user.getNom(), user.getPrenom(), user.getRole(), user.getNumtel(),
+                        user.getEmail(), user.getPassword(), user.getImage(), myListener);
+
+                if (column == 2) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row);
+                GridPane.setMargin(anchorPane, new Insets(10));
+            } catch (IOException e) {
+                System.out.println("Problem loading user details");
+            }
+        }
+    }
 
     @FXML
     void initialize() {
@@ -76,13 +139,13 @@ public class AffichageController {
         UserDataList.addAll(userService.afficherUser());
         System.out.println("load data");
         if (UserDataList.size() > 0) {
-            setChosenRec(UserDataList.get(0));
+            setChosenUser(UserDataList.get(0));
             myListener = new item_user.MyListener() {
 
                 @Override
                 public void onClick(User user) {
                     System.out.println("mouse clicked");
-                    setChosenRec(user);
+                    setChosenUser(user);
                 }
             };
         }
@@ -114,11 +177,13 @@ public class AffichageController {
             } catch (IOException e) {
                 System.out.println("problem");
             }
+            Chercher.textProperty().addListener((observable, oldValue, newValue) -> search());
+
         }
 
     }
 
-    private void setChosenRec(User u) {
+    private void setChosenUser(User u) {
 
         System.out.println(item_user.u.getNom());
         System.out.println(item_user.u.getPrenom());
@@ -134,4 +199,3 @@ public class AffichageController {
     }
 
 }
-

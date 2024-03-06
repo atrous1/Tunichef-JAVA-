@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
 import java.io.FileInputStream;
@@ -11,6 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import Entities.Role;
 import Entities.User;
 import Services.UserService;
@@ -21,11 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-/**
- * FXML Controller class
- *
- * @author guerf
- */
 public class item_user implements Initializable {
 
     @FXML
@@ -61,7 +52,9 @@ public class item_user implements Initializable {
         }
     }
 
-
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -80,6 +73,7 @@ public class item_user implements Initializable {
         UserService userService = new UserService();
         List<User> L = new ArrayList<>();
         myListener.onClick(user);
+        //covt.setId_co(Integer.parseInt(id_co.getText()));
         L = userService.rechercheUser(id);
         u.setId(L.get(0).getId());
         u.setNom(L.get(0).getNom());

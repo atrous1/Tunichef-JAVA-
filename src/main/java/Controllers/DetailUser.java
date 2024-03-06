@@ -53,7 +53,6 @@ public class DetailUser {
     @FXML
     private ComboBox<String> role_detail;
 
-
     @FXML
     void Modifier(ActionEvent event) {
         try {
@@ -105,7 +104,6 @@ public class DetailUser {
     void initialize() {
         String imagePath = "C:\\xampp\\htdocs\\user_images\\" + item_user.u.getImage();
         System.out.println(imagePath);
-        //id_co_TF.setText(String.valueOf(Afficher_CovController.id_co));
         nom_detail.setText(String.valueOf(item_user.u.getNom()));
         prenom_detail.setText(String.valueOf(item_user.u.getPrenom()));
         ObservableList<String> list = FXCollections.observableArrayList("CLIENT", "ADMIN");
@@ -120,6 +118,5 @@ public class DetailUser {
         }
     }
 
-    public void modifyrole(ActionEvent event) {
-    }
+
 }

@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -7,7 +8,15 @@ import java.util.ResourceBundle;
 import Services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 public class changementMDP {
 
@@ -33,10 +42,27 @@ public class changementMDP {
         String c_password = retype_pass.getText();
 
 
-        if(password.equals(c_password))
-            su.modifier_password(id,password);
+        if(password.equals(c_password)) {
+            su.modifier_password(id, password);
+            try {
+                Parent page1 = FXMLLoader.load(getClass().getResource("/Login.fxml"));
+                Scene scene = new Scene(page1);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println(ex);
+
+            }
+        }
         else
-            System.out.println("verifier votre mdp");
+            Notifications.create()
+                    .darkStyle()
+                    .title("Verfiez le mot de passe")
+                    .position(Pos.BOTTOM_RIGHT) // Modifier la position ici
+                    .hideAfter(Duration.seconds(20))
+                    .show();
+
     }
 
     @FXML
