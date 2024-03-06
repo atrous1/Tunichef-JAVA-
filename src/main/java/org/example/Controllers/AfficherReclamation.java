@@ -175,8 +175,6 @@ public class AfficherReclamation implements Initializable {
             });
 
             reclamation.setItems(data);
-
-            // Ajoutez un gestionnaire d'événements pour le champ de recherche
             searchField.setOnAction(event -> {
                 filterReclamations(searchField.getText(), data);
             });
@@ -223,7 +221,13 @@ public class AfficherReclamation implements Initializable {
         }
         reclamation.setItems(filteredList);
     }
-
+@FXML
     public void filterReclamations(ActionEvent actionEvent) {
+    }
+    @FXML
+    private void sortReclamationsByAvis(ActionEvent event) {
+        ObservableList<Reclamation> sortedList = FXCollections.observableArrayList(reclamation.getItems());
+        sortedList.sort((rec1, rec2) -> Integer.compare(rec2.getAvis(), rec1.getAvis())); // inversion de l'ordre de tri
+        reclamation.setItems(sortedList);
     }
 }

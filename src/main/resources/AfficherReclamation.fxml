@@ -23,7 +23,7 @@
         </columns>
       </TableView>
       <Button fx:id="deleteId" layoutX="157.0" layoutY="354.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="103.0" text="Supprimer" />
-
+       <Button fx:id="sortButton" layoutX="315.0" layoutY="355.0" onAction="#sortReclamationsByAvis" text="Trier par avis" />
        <Button fx:id="boutonPDF" layoutX="51.0" layoutY="355.0" onAction="#handleGenererPDF" text="Generate PDF" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" />
        <TextField fx:id="searchField" layoutX="225.0" layoutY="76.0" onAction="#filterReclamations" prefHeight="26.0" prefWidth="264.0" />
 
