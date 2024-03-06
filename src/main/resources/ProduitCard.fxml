@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Click" prefHeight="188.0" prefWidth="214.0" stylesheets="@Assets/aff.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PoduitCardController">
+   <children>
+      <Label fx:id="nomP" layoutX="15.0" layoutY="14.0" text="Nom Produit" />
+      <Label fx:id="prixP" layoutX="147.0" layoutY="14.0" text="Prix" />
+      <Label fx:id="descriptionP" layoutX="81.0" layoutY="143.0" text="description" />
+      <ImageView fx:id="imageP" fitHeight="82.0" fitWidth="124.0" layoutX="45.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="191.0" layoutY="14.0" text="DT" />
+   </children>
+</AnchorPane>

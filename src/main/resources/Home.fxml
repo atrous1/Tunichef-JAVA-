@@ -17,5 +17,6 @@
       <Button layoutX="570.0" layoutY="412.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
       <Hyperlink layoutX="565.0" layoutY="172.0" onAction="#Profil" text="Mon Profil" />
       <Hyperlink layoutX="568.0" layoutY="369.0" onAction="#rec" text="Réclamation" />
+      <Hyperlink layoutX="574.0" layoutY="218.0" onAction="#Menuuu" text="Menu" />
    </children>
 </AnchorPane>

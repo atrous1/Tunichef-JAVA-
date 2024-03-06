@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#Click" prefHeight="188.0" prefWidth="214.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MenuCardController">
+   <children>
+      <Label fx:id="nb_page" layoutX="15.0" layoutY="14.0" text="nbr page" />
+      <Label fx:id="origine_menu" layoutX="147.0" layoutY="14.0" text="Origine" />
+      <Label fx:id="categorie_menu" layoutX="81.0" layoutY="143.0" text="Categorie" />
+      <ImageView fx:id="image_menu" fitHeight="82.0" fitWidth="124.0" layoutX="45.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

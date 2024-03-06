@@ -21,6 +21,7 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -52,6 +53,8 @@ public class AfficherReclamation implements Initializable {
     private TableColumn<Reclamation,Integer> avis;
     @FXML
     private TableColumn<Reclamation, Date> date;
+    @FXML
+    private TextField searchField;
 
     @FXML
     private void handleGenererPDF(ActionEvent event) {
@@ -200,6 +203,10 @@ private void Rep (ActionEvent event) {
                 return cell;
             });
             reclamation.setItems(data);
+            // Ajoutez un gestionnaire d'événements pour le champ de recherche
+            searchField.setOnAction(event -> {
+                filterReclamations(searchField.getText(), data);
+            });
             boutonPDF.setOnAction(event -> genererPDF());
 
         } catch (SQLException ex) {
@@ -229,5 +236,18 @@ private void Rep (ActionEvent event) {
                 serviceReclamation.supprimer(selectedIndex);
             }
         }
+    }
+    @FXML
+    private void filterReclamations(String keyword, ObservableList<Reclamation> originalList) {
+        ObservableList<Reclamation> filteredList = FXCollections.observableArrayList();
+        for (Reclamation rec : originalList) {
+            if (rec.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                filteredList.add(rec);
+            }
+        }
+        reclamation.setItems(filteredList);
+    }
+    @FXML
+    public void filterReclamations(ActionEvent actionEvent) {
     }
 }
