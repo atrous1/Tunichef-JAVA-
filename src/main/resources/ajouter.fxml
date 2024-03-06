@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ajouter">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="610.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Backk.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="Description" layoutX="274.0" layoutY="180.0" />
+      <Button fx:id="btn1" layoutX="237.0" layoutY="375.0" mnemonicParsing="false" onAction="#ajouterReclamation" prefHeight="33.0" prefWidth="162.0" text="Envoyer" />
+      <Label layoutX="173.0" layoutY="183.0" prefHeight="18.0" prefWidth="81.0" text="Description" />
+      <Label layoutX="173.0" layoutY="295.0" text="Avis" />
+      <DatePicker fx:id="Date" layoutX="274.0" layoutY="237.0" />
+      <Slider fx:id="Avis" blockIncrement="1.0" layoutX="279.0" layoutY="304.0" max="10.0" showTickLabels="true" showTickMarks="true" />
+      <Text layoutX="171.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+   </children>
+</AnchorPane>
