@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="458.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AffichageMenuBack">
+<AnchorPane prefHeight="462.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AffichageMenuBack">
    <children>
       <AnchorPane layoutY="-12.0" prefHeight="223.0" prefWidth="671.0" stylesheets="@Assets/aff.css">
          <children>
@@ -18,7 +18,6 @@
                   <TableColumn fx:id="casenbrpage" prefWidth="101.6000394821167" text="nombre page" />
                   <TableColumn fx:id="casecat" prefWidth="115.99993896484375" text="categorie" />
                   <TableColumn fx:id="caseori" prefWidth="103.19993591308594" text="origine" />
-                  <TableColumn fx:id="caseidp" minWidth="0.0" prefWidth="151.20001220703125" text="id produit" />
                </columns>
                <styleClass>
                   <String fx:value="pane" />
@@ -58,7 +57,7 @@
                   <String fx:value="shadow" />
                </styleClass>
             </TextField>
-            <Button fx:id="modifierm" layoutX="91.0" layoutY="203.0" mnemonicParsing="false" onAction="#modifierM" text="Modifier menu" />
+            <Button fx:id="modifierm" layoutX="91.0" layoutY="163.0" mnemonicParsing="false" onAction="#modifierM" text="Modifier menu" />
             <Label layoutX="75.0" layoutY="97.0" text="origine de plat :" />
             <Label layoutX="76.0" layoutY="51.0" text="catégorie :" />
             <Label layoutX="77.0" layoutY="4.0" text="nombre page :" />
@@ -72,13 +71,6 @@
             </TextField>
             <Label layoutX="339.0" layoutY="38.0" text="Id menu à supprimer :" />
             <Button fx:id="supprimerm" layoutX="352.0" layoutY="103.0" mnemonicParsing="false" onAction="#supprimerM" text="Supprimer menu" />
-            <Label layoutX="74.0" layoutY="142.0" text="id de produit :" />
-            <TextField fx:id="modidp" layoutX="74.0" layoutY="160.0">
-               <styleClass>
-                  <String fx:value="radius" />
-                  <String fx:value="shadow" />
-               </styleClass>
-            </TextField>
          </children>
       </AnchorPane>
    </children>

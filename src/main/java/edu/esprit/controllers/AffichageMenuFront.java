@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -30,7 +31,6 @@ public class AffichageMenuFront {
 
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
 
@@ -58,6 +58,7 @@ public class AffichageMenuFront {
         stage.setScene(scene);
         stage.show();
     }
+
 
     @FXML
     void initialize() {
@@ -112,7 +113,7 @@ public class AffichageMenuFront {
         categorie.setText(MenuCardController.r.getCategorie());
 
         try {
-            image.setImage(new Image(new FileInputStream("C:\\Users\\guerf\\Downloads\\whatsapp-icon.png")));
+            image.setImage(new Image(new FileInputStream("C:\\Users\\houss\\OneDrive\\Bureau\\menu2.jpg")));
         } catch (FileNotFoundException e) {
             System.err.println("Error loading image: " + e.getMessage());
         }

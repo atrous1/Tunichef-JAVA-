@@ -19,22 +19,8 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(int id_menu, List<Produit> listProduit, int nbr_page, String categorie, String origine) {
-        this.id_menu = id_menu;
-        this.listProduit = listProduit;
-        this.nbr_page = nbr_page;
-        this.categorie = categorie;
-        this.origine = origine;
-    }
 
     public Menu(int nbr_page, String categorie, String origine) {
-        this.nbr_page = nbr_page;
-        this.categorie = categorie;
-        this.origine = origine;
-    }
-
-    public Menu(List<Produit> listProduit, int nbr_page, String categorie, String origine) {
-        this.listProduit = listProduit;
         this.nbr_page = nbr_page;
         this.categorie = categorie;
         this.origine = origine;

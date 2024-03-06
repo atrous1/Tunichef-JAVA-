@@ -3,16 +3,23 @@ package edu.esprit.controllers;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import edu.esprit.entities.Menu;
 import edu.esprit.entities.Produit;
+import edu.esprit.services.ServiceMenu;
+import edu.esprit.services.ServiceProduit;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class PoduitCardController {
+public class PoduitCardController implements Initializable {
 
     @FXML
     private ResourceBundle resources;
@@ -58,15 +65,25 @@ public class PoduitCardController {
     }
 
     @FXML
-    void Click(MouseEvent event) {
+    void Click(MouseEvent event) throws SQLException {
+
+        ServiceProduit rc = new ServiceProduit();
+        List<Produit> L = new ArrayList<>();
+        myListener.onClick(re);
+
+        L = rc.rechP(id);
+        r.setId_produit(L.get(0).getId_produit());
+        r.setNom_produit(L.get(0).getNom_produit());
+        r.setPrix_produit(L.get(0).getPrix_produit());
+        r.setImage_produit(L.get(0).getImage_produit());
+        r.setLike(L.get(0).getLike());
+        r.setDislike(L.get(0).getDislike());
+        r.setMenu(L.get(0).getMenu());
 
     }
 
-    @FXML
-    void initialize() {
-    }
 
-    public void onClick() {
+    public void onClick() throws SQLException {
         myListener.onClick(re);
     }
 
@@ -74,9 +91,14 @@ public class PoduitCardController {
         this.myListener = myListener;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
     public interface MyListener {
 
-        void onClick(Produit re);
+        void onClick(Produit re) throws SQLException;
     }
 
 }

@@ -14,6 +14,9 @@ public class Produit {
     private String image_produit;
     private double prix_produit;
     private Menu Menu;
+    private int like;
+    private int dislike;
+    private String categorie;
 
     public Produit(int id_produit, String nom_produit, String description_produit, double prix_produit) {
         this.id_produit = id_produit;
@@ -58,6 +61,27 @@ public class Produit {
         this.nom_produit = nom_produit;
         this.description_produit = description_produit;
         this.prix_produit = prix_produit;
+    }
+
+    public Produit(int id_produit, String nom_produit, String description_produit, String image_produit, double prix_produit, edu.esprit.entities.Menu menu, int like, int dislike) {
+        this.id_produit = id_produit;
+        this.nom_produit = nom_produit;
+        this.description_produit = description_produit;
+        this.image_produit = image_produit;
+        this.prix_produit = prix_produit;
+        Menu = menu;
+        this.like = like;
+        this.dislike = dislike;
+    }
+
+    public Produit(String nom_produit, String description_produit, String image_produit, double prix_produit, edu.esprit.entities.Menu menu, int like, int dislike) {
+        this.nom_produit = nom_produit;
+        this.description_produit = description_produit;
+        this.image_produit = image_produit;
+        this.prix_produit = prix_produit;
+        Menu = menu;
+        this.like = like;
+        this.dislike = dislike;
     }
 
     public Menu getMenu() {
@@ -107,6 +131,30 @@ public class Produit {
     public void setPrix_produit(double prix_produit) {
         this.prix_produit = prix_produit;
     }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getDislike() {
+        return dislike;
+    }
+
+    public void setDislike(int dislike) {
+        this.dislike = dislike;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
+    public String getCategorie() {
+        return this.categorie;
+    }
+
 
     @Override
     public boolean equals(Object o) {

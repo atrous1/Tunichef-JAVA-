@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,5 +27,7 @@
       </ScrollPane>
       <Button layoutX="647.0" layoutY="252.0" mnemonicParsing="false" onAction="#ajout" text="Ajouter" />
       <Button layoutX="649.0" layoutY="189.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+      <TextField fx:id="recherche" layoutX="155.0" layoutY="40.0" onAction="#rechercheP" prefHeight="26.0" prefWidth="273.0" promptText="recherche" styleClass="radius" stylesheets="@Assets/aff.css" />
+      <Button fx:id="like_dislike_button" layoutX="658.0" layoutY="301.0" mnemonicParsing="false" onAction="#like_dislike" text="like" />
    </children>
 </AnchorPane>

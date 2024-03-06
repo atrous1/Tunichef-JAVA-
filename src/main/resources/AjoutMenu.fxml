@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -28,16 +27,10 @@
             <String fx:value="radius" />
          </styleClass>
       </TextField>
-      <Button fx:id="ajoutermenu" layoutX="181.0" layoutY="375.0" mnemonicParsing="false" onAction="#ajouteM" stylesheets="@Assets/aff.css" text="ajouter menu" />
+      <Button fx:id="ajoutermenu" layoutX="181.0" layoutY="316.0" mnemonicParsing="false" onAction="#ajouteM" stylesheets="@Assets/aff.css" text="ajouter menu" />
       <Label layoutX="157.0" layoutY="115.0" text="Nombre de page :" />
       <Label layoutX="157.0" layoutY="175.0" text="Catégorie de menu :" />
       <Label layoutX="153.0" layoutY="233.0" prefHeight="18.0" prefWidth="118.0" text="Origine de produit :" />
-      <ComboBox fx:id="idp" layoutX="150.0" layoutY="313.0" prefWidth="150.0" promptText="choisir" stylesheets="@Assets/aff.css">
-         <styleClass>
-            <String fx:value="radius" />
-            <String fx:value="shadow" />
-         </styleClass></ComboBox>
-      <Label layoutX="154.0" layoutY="292.0" prefHeight="10.0" prefWidth="102.0" text="Produit :" />
       <TextField fx:id="categoriep" layoutX="149.0" layoutY="199.0" stylesheets="@Assets/aff.css">
          <styleClass>
             <String fx:value="shadow" />

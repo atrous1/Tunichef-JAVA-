@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="462.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AffichageMenuFront">
+<AnchorPane prefHeight="462.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AffichageMenuFront">
    <children>
       <ImageView fitHeight="587.0" fitWidth="785.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>

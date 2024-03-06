@@ -68,7 +68,7 @@ public class MenuCardController {
         origine_menu.setText(origine);
 
         try {
-            image_menu.setImage(new Image(new FileInputStream("C:\\Users\\guerf\\Downloads\\whatsapp-icon.png")));
+            image_menu.setImage(new Image(new FileInputStream("C:\\Users\\houss\\OneDrive\\Bureau\\menu2.jpg")));
         } catch (FileNotFoundException e) {
             System.err.println("Error loading image: " + e.getMessage());
         }

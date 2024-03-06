@@ -1,7 +1,6 @@
 package edu.esprit.services;
 
 import edu.esprit.entities.Menu;
-import edu.esprit.entities.Produit;
 import edu.esprit.utils.DataSource;
 
 import java.sql.Connection;
@@ -100,4 +99,26 @@ public class ServiceMenu {
 
         return list;
     }
+    public List<String> getAllCategories() {
+        List<String> categories = new ArrayList<>();
+
+        try {
+            String query = "SELECT DISTINCT categorie FROM menu";
+            Statement statement = cnx.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String categorie = resultSet.getString("categorie");
+                categories.add(categorie);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return categories;
+    }
+
 }

@@ -32,9 +32,6 @@ public class AffichageMenuBack implements Initializable{
     private TableColumn<Menu, String> casecat;
 
     @FXML
-    private TableColumn<Menu, Integer> caseidp;
-
-    @FXML
     private TableColumn<Menu, Integer> casenbrpage;
 
     @FXML
@@ -46,8 +43,6 @@ public class AffichageMenuBack implements Initializable{
     @FXML
     private Button modifierm;
 
-    @FXML
-    private TextField modidp;
 
     @FXML
     private TextField modnbrpage;
@@ -99,7 +94,6 @@ public class AffichageMenuBack implements Initializable{
             casenbrpage.setCellValueFactory(new PropertyValueFactory<>("nbr_page"));
             casecat.setCellValueFactory(new PropertyValueFactory<>("categorie"));
             caseori.setCellValueFactory(new PropertyValueFactory<>("origine"));
-            caseidp.setCellValueFactory(new PropertyValueFactory<>("id_produit"));
 
             tabelMenu.setItems(menus);
         }
@@ -116,13 +110,11 @@ public class AffichageMenuBack implements Initializable{
             String categoriemenuValue = modcat.getText();
             String originemenuValue = modori.getText();
 
-            Integer idproValue = Integer.parseInt(modidp.getText());
-
             Menu TableSelection = tabelMenu.getSelectionModel().getSelectedItem();
             int idmenu = TableSelection.getId_menu();
 
 
-            if (nbrpademenuValue == 0 || categoriemenuValue.isEmpty() || originemenuValue.isEmpty() || idproValue == 0) {
+            if (nbrpademenuValue == 0 || categoriemenuValue.isEmpty() || originemenuValue.isEmpty() ) {
                 System.out.println("Veuillez remplir tous les champs");
                 return;
             }
@@ -135,7 +127,6 @@ public class AffichageMenuBack implements Initializable{
             System.out.println(nbrpademenuValue);
             System.out.println(categoriemenuValue);
             System.out.println(categoriemenuValue);
-            System.out.println(idproValue);
 
             menuServiceService.modifiermenu(newmenu, idmenu);
             rafraichiTableView();
